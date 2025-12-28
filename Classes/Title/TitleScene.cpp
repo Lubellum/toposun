@@ -22,12 +22,12 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "HelloWorldScene.h"
+#include "TitleScene.h"
 #include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 
-HelloWorld::HelloWorld()
+CTitleScene::CTitleScene()
     : mVisibleSize(Director::getInstance()->getVisibleSize())
     , mOrigin(Director::getInstance()->getVisibleOrigin())
     , mRemainingTime(60)
@@ -35,20 +35,20 @@ HelloWorld::HelloWorld()
 
 }
 
-Scene* HelloWorld::createScene()
+Scene* CTitleScene::createScene()
 {
-    return HelloWorld::create();
+    return CTitleScene::create();
 }
 
 // Print useful error message instead of segfaulting when files are not there.
 static void problemLoading(const char* filename)
 {
     printf("Error while loading: %s\n", filename);
-    printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in HelloWorldScene.cpp\n");
+    printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in CTitleSceneScene.cpp\n");
 }
 
 // on "init" you need to initialize your instance
-bool HelloWorld::init()
+bool CTitleScene::init()
 {
     //////////////////////////////
     // 1. super init first
@@ -65,7 +65,7 @@ bool HelloWorld::init()
     auto closeItem = MenuItemImage::create(
                                            "CloseNormal.png",
                                            "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
+                                           CC_CALLBACK_1(CTitleScene::menuCloseCallback, this));
 
     if (closeItem == nullptr ||
         closeItem->getContentSize().width <= 0 ||
@@ -91,7 +91,7 @@ bool HelloWorld::init()
     // add a label shows "Hello World"
     // create and initialize a label
 
-    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
+    auto label = Label::createWithTTF("TitleScene", "fonts/Marker Felt.ttf", 24);
     if (label == nullptr)
     {
         problemLoading("'fonts/Marker Felt.ttf'");
@@ -106,7 +106,7 @@ bool HelloWorld::init()
         this->addChild(label, 1);
     }
 
-    // add "HelloWorld" splash screen"
+    // add "CTitleScene" splash screen"
     auto sprite = Sprite::create("HelloWorld.png");
     if (sprite == nullptr)
     {
@@ -116,16 +116,9 @@ bool HelloWorld::init()
     {
         sprite->setName("HelloWorld");
         // position the sprite on the center of the screen
-        //sprite->setPosition(Vec2(mVisibleSize.width / 2 + mOrigin.x, mVisibleSize.height / 2 + mOrigin.y));
         sprite->setPosition(mVisibleSize.width/2 + mOrigin.x, mVisibleSize.height/2 + mOrigin.y);
         sprite->setAnchorPoint(Vec2(0.0, 0.0));
-        //sprite->setPosition(Vec2(0.0, 0.0));
-        //sprite->setPosition(Vec2(mOrigin.x, mOrigin.y));
-        //sprite->setPosition(Vec2( (sprite->getContentSize().width) / 2, (sprite->getContentSize().height) / 2));
-        //sprite->setRotation(45);
         sprite->setScale(1.0, 1.0);
-        //sprite->setFlippedX(true);
-        //sprite->setFlippedY(true);
 
         // add the sprite as a child to this layer
         this->addChild(sprite, 0);
@@ -136,7 +129,6 @@ bool HelloWorld::init()
     timeCountLabel->setName("TimeCount");
     timeCountLabel->setPosition(Vec2(timeCountLabel->getContentSize().width / 2,
         mOrigin.y + mVisibleSize.height - (timeCountLabel->getContentSize().height / 2)));
-    //timeCountLabel->setString("Count");
     this->addChild(timeCountLabel, 0);
 
     this->scheduleUpdate();
@@ -144,23 +136,18 @@ bool HelloWorld::init()
     return true;
 }
 
-void HelloWorld::update(float delta)
+void CTitleScene::update(float delta)
 {
-    auto sprite = dynamic_cast<Sprite*>(this->getChildByName("HelloWorld"));
-    //sprite->setRotation(5.0 + sprite->getRotation());
-    //sprite->setRotation( (90.0 * delta) + sprite->getRotation() );
-    //sprite->setPosition(Vec2(10.0, 0.0) + sprite->getPosition());
-    //sprite->setPosition( (Vec2(100.0, 0.0) *delta) + sprite->getPosition());
+    auto sprite = dynamic_cast<Sprite*>(this->getChildByName("TitleScene"));
     mRemainingTime -= delta;
     int remainingTime = mRemainingTime;
     auto timeCountLabel = dynamic_cast<Label*>(this->getChildByName("TimeCount"));
-    //auto value = cocos2d::StringUtils::format("TimeCount : %4.2f",mRemainingTime);
     auto value = cocos2d::StringUtils::format("TimeCount : %d",remainingTime);
     timeCountLabel->setString(value);
 }
 
 
-void HelloWorld::menuCloseCallback(Ref* pSender)
+void CTitleScene::menuCloseCallback(Ref* pSender)
 {
     //Close the cocos2d-x game scene and quit the application
     Director::getInstance()->end();
