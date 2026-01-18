@@ -132,12 +132,13 @@ bool HelloWorld::init()
     }
 
     auto value = cocos2d::StringUtils::format("TimeCount : %d", mRemainingTime);
-    auto timeCountLabel = Label::createWithTTF(value, "fonts/Marker Felt.ttf", 48);
+    auto timeCountLabel = Label::createWithTTF(value, "fonts/oshigo.ttf", 48);
     timeCountLabel->setName("TimeCount");
     timeCountLabel->setPosition(Vec2(timeCountLabel->getContentSize().width / 2,
         mOrigin.y + mVisibleSize.height - (timeCountLabel->getContentSize().height / 2)));
-    //timeCountLabel->setString("Count");
     this->addChild(timeCountLabel, 0);
+
+    this->scheduleUpdate();
 
     this->scheduleUpdate();
 
@@ -157,6 +158,15 @@ void HelloWorld::update(float delta)
     //auto value = cocos2d::StringUtils::format("TimeCount : %4.2f",mRemainingTime);
     auto value = cocos2d::StringUtils::format("TimeCount : %d",remainingTime);
     timeCountLabel->setString(value);
+
+    mRemainingTime -= delta;
+    if (mRemainingTime >= 0.0)
+    {
+        int remainingTime = mRemainingTime;
+        auto timeCountLabel = dynamic_cast<Label*>(this->getChildByName("TimeCount"));
+        auto value = cocos2d::StringUtils::format("TimeCount : %d", remainingTime);
+        timeCountLabel->setString(value);
+    }
 }
 
 

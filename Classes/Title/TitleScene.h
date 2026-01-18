@@ -37,17 +37,10 @@ public:
     virtual bool init() override;
     virtual void update(float delta) override;
     
-    // a selector callback
-    void menuCloseCallback(cocos2d::Ref* pSender);
-    
     // implement the "static create()" method manually
     CREATE_FUNC(CTitleScene);
 
-private:
-    cocos2d::Size mVisibleSize;
-    cocos2d::Vec2 mOrigin;
-    float mRemainingTime;
-
+    std::function<void(Ref*)> CreateDecisionEvent();
 };
 
 #endif // __TITLE_SCENE_H__
