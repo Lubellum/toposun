@@ -13,6 +13,9 @@
     <Filter Include="src\Title">
       <UniqueIdentifier>{c3dda178-fa91-4d5b-9252-2d58a28a208d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Play">
+      <UniqueIdentifier>{62a26179-9aeb-4e49-a5b4-9fd54a3746fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -27,6 +30,9 @@
     <ClCompile Include="..\Classes\Title\TitleScene.cpp">
       <Filter>src\Title</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Play\PlayLevelSelectScene.cpp">
+      <Filter>src\Play</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -40,6 +46,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Title\TitleScene.h">
       <Filter>src\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Play\PlayLevelSelectScene.h">
+      <Filter>src\Play</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
