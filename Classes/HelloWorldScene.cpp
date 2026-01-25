@@ -1,4 +1,4 @@
-#include "HelloWorldScene.h"
+Ôªø#include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 
 USING_NS_CC;
@@ -159,10 +159,10 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
     int x = 0;
     if (x)
     {
-        // Ç≥ÇÍÇ»Ç¢
+        // „Åï„Çå„Å™„ÅÑ
     }
     else
     {
-        // Ç≥ÇÍÇÈ
+        // „Åï„Çå„Çã
     }
 }

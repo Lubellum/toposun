@@ -1,4 +1,4 @@
-#ifndef TITLESCENE_H
+﻿#ifndef TITLESCENE_H
 #define TITLESCENE_H
 
 #include "cocos2d.h"

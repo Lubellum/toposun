@@ -1,4 +1,4 @@
-#ifndef  _APP_DELEGATE_H_
+ï»¿#ifndef  _APP_DELEGATE_H_
 #define  _APP_DELEGATE_H_
 
 #include "cocos2d.h"
@@ -20,19 +20,19 @@ public:
     @brief    Implement Director and Scene init code here.
     @return true    Initialize success, app continue.
     @return false   Initialize failed, app terminate.
-    ƒAƒvƒŠ‚ª‰‚ß‚ÄŒÄ‚Î‚ê‚½‚Æ‚«@*/
+    ã‚¢ãƒ—ãƒªãŒåˆã‚ã¦å‘¼ã°ã‚ŒãŸã¨ãã€€*/
     virtual bool applicationDidFinishLaunching();
 
     /**
     @brief  Called when the application moves to the background
     @param  the pointer of the application
-    ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚ÉˆÚs‚µ‚½‚Æ‚« */
+    ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã«ç§»è¡Œã—ãŸã¨ã */
     virtual void applicationDidEnterBackground();
 
     /**
     @brief  Called when the application reenters the foreground
     @param  the pointer of the application
-    ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚©‚çƒtƒHƒAƒOƒ‰ƒEƒ“ƒh‚É•œ‹A‚µ‚½‚Æ‚«@*/
+    ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‹ã‚‰ãƒ•ã‚©ã‚¢ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã«å¾©å¸°ã—ãŸã¨ãã€€*/
     virtual void applicationWillEnterForeground();
 };
 
