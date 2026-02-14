@@ -3,6 +3,9 @@
 
 #include "cocos2d.h"
 
+// ========================================================================= //
+// 難易度選択画面
+// ========================================================================= //
 class CPlayLevelSelectScene : public cocos2d::Scene
 {
     CREATE_FUNC(CPlayLevelSelectScene);

@@ -2,7 +2,12 @@
 #include "SimpleAudioEngine.h"
 #include "ui/UIImageView.h"
 
+// todo: 消す
 USING_NS_CC;
+
+// ========================================================================= //
+// ゲーム内容確認画面
+// ========================================================================= //
 
 // ------------------------------------------------------------------------- //
 // 生成
@@ -62,6 +67,14 @@ void CPlaySummaryScene::update(float delta)
 // ------------------------------------------------------------------------- //
 void CPlaySummaryScene::Initilize(const std::string& aParameter)
 {
+    mParameter = aParameter;
+    auto image = cocos2d::ui::ImageView::create("playSummary_bg.png");
+    image->setTouchEnabled(true);
+    image->addClickEventListener(CreateDecisionEvent());
+    image->setName("playSummary_bg");
+    image->setAnchorPoint(Vec2(0.0, 0.0));
+    image->setPosition(Vec2(0.0, 0.0));
+    this->addChild(image, 0);
 }
 
 // ------------------------------------------------------------------------- //

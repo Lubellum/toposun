@@ -1,8 +1,13 @@
 ﻿#include "PlayLevelSelectScene.h"
+#include "PlaySummaryScene.h"
 #include "SimpleAudioEngine.h"
 #include "ui/UIImageView.h"
 
 USING_NS_CC;
+
+// ========================================================================= //
+// 難易度選択画面
+// ========================================================================= //
 
 // ------------------------------------------------------------------------- //
 // 生成
@@ -80,5 +85,9 @@ std::function<void(Ref*)> CPlayLevelSelectScene::CreateDecisionEvent()
     return [this](cocos2d::Ref*)
         {
             cocos2d::log(mParameter.c_str());
+            auto director = Director::getInstance();
+            auto scene = CPlaySummaryScene::CreateScene("ddddddddd");
+            auto transition = TransitionFade::create(0.5, scene);
+            director->replaceScene(transition);
         };
 }
