@@ -1,17 +1,17 @@
-﻿#ifndef PLAYLEVELSELECTSCENE_H
-#define PLAYLEVELSELECTSCENE_H
+﻿#ifndef PLAYSUMMARYSCENE_H
+#define PLAYSUMMARYSCENE_H
 
 #include "cocos2d.h"
 
-class CPlayLevelSelectScene : public cocos2d::Scene
+class CPlaySummaryScene : public cocos2d::Scene
 {
-    CREATE_FUNC(CPlayLevelSelectScene);
-    static CPlayLevelSelectScene* create(const std::string& aParameter);
+    CREATE_FUNC(CPlaySummaryScene);
+    static CPlaySummaryScene* create(const std::string& aParameter);
 public:
     static cocos2d::Scene* CreateScene(const std::string& aParameter);
     
-    CPlayLevelSelectScene();
-    virtual ~CPlayLevelSelectScene();
+    CPlaySummaryScene();
+    virtual ~CPlaySummaryScene();
 
     virtual bool init() override;
     virtual void update(float delta) override;
@@ -23,4 +23,4 @@ private:
     std::string mParameter;
 };
 
-#endif // PLAYLEVELSELECTSCENE_H
+#endif // PLAYSUMMARYSCENE_H

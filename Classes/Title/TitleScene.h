@@ -15,7 +15,6 @@ public:
     virtual bool init() override;
     virtual void update(float delta) override;
     
-
     std::function<void(Ref*)> CreateDecisionEvent();
 };
 

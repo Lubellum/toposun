@@ -1,4 +1,4 @@
-﻿#include "PlayLevelSelectScene.h"
+﻿#include "PlaySummaryScene.h"
 #include "SimpleAudioEngine.h"
 #include "ui/UIImageView.h"
 
@@ -7,9 +7,9 @@ USING_NS_CC;
 // ------------------------------------------------------------------------- //
 // 生成
 // ------------------------------------------------------------------------- //
-CPlayLevelSelectScene* CPlayLevelSelectScene::create(const std::string& aParameter)
+CPlaySummaryScene* CPlaySummaryScene::create(const std::string& aParameter)
 {
-    auto* instance = CPlayLevelSelectScene::create();
+    auto* instance = CPlaySummaryScene::create();
     instance->Initilize(aParameter);
     return instance;
 }
@@ -17,29 +17,29 @@ CPlayLevelSelectScene* CPlayLevelSelectScene::create(const std::string& aParamet
 // ------------------------------------------------------------------------- //
 // シーン生成
 // ------------------------------------------------------------------------- //
-Scene* CPlayLevelSelectScene::CreateScene(const std::string& aParameter)
+Scene* CPlaySummaryScene::CreateScene(const std::string& aParameter)
 {
-    return CPlayLevelSelectScene::create(aParameter);
+    return CPlaySummaryScene::create(aParameter);
 }
 
 // ------------------------------------------------------------------------- //
 // コンストラクタ
 // ------------------------------------------------------------------------- //
-CPlayLevelSelectScene::CPlayLevelSelectScene()
+CPlaySummaryScene::CPlaySummaryScene()
 {
 }
 
 // ------------------------------------------------------------------------- //
 // デストラクタ
 // ------------------------------------------------------------------------- //
-CPlayLevelSelectScene::~CPlayLevelSelectScene()
+CPlaySummaryScene::~CPlaySummaryScene()
 {
 }
 
 // ------------------------------------------------------------------------- //
 // 初期化
 // ------------------------------------------------------------------------- //
-bool CPlayLevelSelectScene::init()
+bool CPlaySummaryScene::init()
 {
     if ( !Scene::init() )
     {
@@ -52,7 +52,7 @@ bool CPlayLevelSelectScene::init()
 // ------------------------------------------------------------------------- //
 // 更新
 // ------------------------------------------------------------------------- //
-void CPlayLevelSelectScene::update(float delta)
+void CPlaySummaryScene::update(float delta)
 {
 
 }
@@ -60,22 +60,14 @@ void CPlayLevelSelectScene::update(float delta)
 // ------------------------------------------------------------------------- //
 // 初期化
 // ------------------------------------------------------------------------- //
-void CPlayLevelSelectScene::Initilize(const std::string& aParameter)
+void CPlaySummaryScene::Initilize(const std::string& aParameter)
 {
-    mParameter = aParameter;
-    auto image = cocos2d::ui::ImageView::create("playLevelSelect_bg.png");
-    image->setTouchEnabled(true);
-    image->addClickEventListener(CreateDecisionEvent());
-    image->setName("playLevelSelect_bg");
-    image->setAnchorPoint(Vec2(0.0, 0.0));
-    image->setPosition(Vec2(0.0, 0.0));
-    this->addChild(image, 0);
 }
 
 // ------------------------------------------------------------------------- //
 // 決定イベント生成
 // ------------------------------------------------------------------------- //
-std::function<void(Ref*)> CPlayLevelSelectScene::CreateDecisionEvent()
+std::function<void(Ref*)> CPlaySummaryScene::CreateDecisionEvent()
 {
     return [this](cocos2d::Ref*)
         {

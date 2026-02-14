@@ -1,8 +1,17 @@
 ﻿#include "TitleScene.h"
+#include "./Play/PlayLevelSelectScene.h"
 #include "SimpleAudioEngine.h"
 #include "ui/UIImageView.h"
 
 USING_NS_CC;
+
+// ------------------------------------------------------------------------- //
+// シーン生成
+// ------------------------------------------------------------------------- //
+Scene* CTitleScene::createScene()
+{
+    return CTitleScene::create();
+}
 
 // ------------------------------------------------------------------------- //
 // コンストラクタ
@@ -16,14 +25,6 @@ CTitleScene::CTitleScene()
 // ------------------------------------------------------------------------- //
 CTitleScene::~CTitleScene()
 {
-}
-
-// ------------------------------------------------------------------------- //
-// シーン生成
-// ------------------------------------------------------------------------- //
-Scene* CTitleScene::createScene()
-{
-    return CTitleScene::create();
 }
 
 // ------------------------------------------------------------------------- //
@@ -64,6 +65,10 @@ std::function<void(Ref*)> CTitleScene::CreateDecisionEvent()
 {
     return [](cocos2d::Ref*)
         {
-            cocos2d::log("aaaaaaaaaaaaa");
+            // cocos2d::log("aaaaaaaaaaaaa");
+            auto director = Director::getInstance();
+            auto scene = CPlayLevelSelectScene::CreateScene("cccccccccc");
+            auto transition = TransitionFade::create(0.5, scene);
+            director->replaceScene(transition);
         };
 }
