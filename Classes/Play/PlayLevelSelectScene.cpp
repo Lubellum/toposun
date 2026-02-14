@@ -46,7 +46,7 @@ CPlayLevelSelectScene::~CPlayLevelSelectScene()
 // ------------------------------------------------------------------------- //
 bool CPlayLevelSelectScene::init()
 {
-    if ( !Scene::init() )
+    if ( Scene::init() == false )
     {
         return false;
     }

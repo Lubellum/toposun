@@ -36,6 +36,9 @@
     <ClCompile Include="..\Classes\Play\PlaySummaryScene.cpp">
       <Filter>src\Play</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Play\PlayScene.cpp">
+      <Filter>src\Play</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -54,6 +57,9 @@
       <Filter>src\Play</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Play\PlaySummaryScene.h">
+      <Filter>src\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Play\PlayScene.h">
       <Filter>src\Play</Filter>
     </ClInclude>
   </ItemGroup>

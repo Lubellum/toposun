@@ -1,4 +1,5 @@
 ﻿#include "PlaySummaryScene.h"
+#include "PlayScene.h"
 #include "SimpleAudioEngine.h"
 #include "ui/UIImageView.h"
 
@@ -46,7 +47,7 @@ CPlaySummaryScene::~CPlaySummaryScene()
 // ------------------------------------------------------------------------- //
 bool CPlaySummaryScene::init()
 {
-    if ( !Scene::init() )
+    if ( Scene::init() == false )
     {
         return false;
     }
@@ -85,5 +86,9 @@ std::function<void(Ref*)> CPlaySummaryScene::CreateDecisionEvent()
     return [this](cocos2d::Ref*)
         {
             cocos2d::log(mParameter.c_str());
+            auto director = Director::getInstance();
+            auto scene = CPlayScene::CreateScene("eeeeeeeee");
+            auto transition = TransitionFade::create(0.5, scene);
+            director->replaceScene(transition);
         };
 }

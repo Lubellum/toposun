@@ -1,53 +1,55 @@
-﻿#include "TitleScene.h"
-#include "./Play/PlayLevelSelectScene.h"
+﻿#include "PlayScene.h"
 #include "SimpleAudioEngine.h"
 #include "ui/UIImageView.h"
 
+// todo: 消す
 USING_NS_CC;
 
 // ========================================================================= //
-// タイトル画面
+// ゲーム内容確認画面
 // ========================================================================= //
+
+// ------------------------------------------------------------------------- //
+// 生成
+// ------------------------------------------------------------------------- //
+CPlayScene* CPlayScene::create(const std::string& aParameter)
+{
+    auto* instance = CPlayScene::create();
+    instance->Initilize(aParameter);
+    return instance;
+}
 
 // ------------------------------------------------------------------------- //
 // シーン生成
 // ------------------------------------------------------------------------- //
-Scene* CTitleScene::createScene()
+Scene* CPlayScene::CreateScene(const std::string& aParameter)
 {
-    return CTitleScene::create();
+    return CPlayScene::create(aParameter);
 }
 
 // ------------------------------------------------------------------------- //
 // コンストラクタ
 // ------------------------------------------------------------------------- //
-CTitleScene::CTitleScene()
+CPlayScene::CPlayScene()
 {
 }
 
 // ------------------------------------------------------------------------- //
 // デストラクタ
 // ------------------------------------------------------------------------- //
-CTitleScene::~CTitleScene()
+CPlayScene::~CPlayScene()
 {
 }
 
 // ------------------------------------------------------------------------- //
 // 初期化
 // ------------------------------------------------------------------------- //
-bool CTitleScene::init()
+bool CPlayScene::init()
 {
     if ( Scene::init() == false )
     {
         return false;
     }
-
-    auto image = cocos2d::ui::ImageView::create("title_bg.png");
-    image->setTouchEnabled(true);
-    image->addClickEventListener(CreateDecisionEvent());
-    image->setName("title_bg");
-    image->setAnchorPoint(Vec2(0.0, 0.0));
-    image->setPosition(Vec2(0.0, 0.0));
-    this->addChild(image, 0);
 
     return true;
 }
@@ -55,22 +57,33 @@ bool CTitleScene::init()
 // ------------------------------------------------------------------------- //
 // 更新
 // ------------------------------------------------------------------------- //
-void CTitleScene::update(float delta)
+void CPlayScene::update(float delta)
 {
 
 }
 
 // ------------------------------------------------------------------------- //
+// 初期化
+// ------------------------------------------------------------------------- //
+void CPlayScene::Initilize(const std::string& aParameter)
+{
+    mParameter = aParameter;
+    auto image = cocos2d::ui::ImageView::create("play_bg.png");
+    image->setTouchEnabled(true);
+    image->addClickEventListener(CreateDecisionEvent());
+    image->setName("play_bg");
+    image->setAnchorPoint(Vec2(0.0, 0.0));
+    image->setPosition(Vec2(0.0, 0.0));
+    this->addChild(image, 0);
+}
+
+// ------------------------------------------------------------------------- //
 // 決定イベント生成
 // ------------------------------------------------------------------------- //
-std::function<void(Ref*)> CTitleScene::CreateDecisionEvent()
+std::function<void(Ref*)> CPlayScene::CreateDecisionEvent()
 {
-    return [](cocos2d::Ref*)
+    return [this](cocos2d::Ref*)
         {
-            // cocos2d::log("aaaaaaaaaaaaa");
-            auto director = Director::getInstance();
-            auto scene = CPlayLevelSelectScene::CreateScene("cccccccccc");
-            auto transition = TransitionFade::create(0.5, scene);
-            director->replaceScene(transition);
+            cocos2d::log(mParameter.c_str());
         };
 }
