@@ -20,7 +20,7 @@ public:
     virtual void update(float delta) override;
     
     void Initilize(const std::string& aParameter);
-    std::function<void(Ref*)> CreateDecisionEvent();
+    std::function<void(Ref*)> CreateDecisionEvent(int aLevel);
 
 private:
     std::string mParameter;
