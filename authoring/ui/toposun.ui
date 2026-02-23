@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<UIProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <filePath>C:\Project\GitHub\Toposun\toposun\authoring\ui\toposun.ui</filePath>
+  <Version>1.2.0.1</Version>
+  <Name>toposun</Name>
+  <ProjectDir>C:\Project\GitHub\Toposun\toposun\authoring\ui</ProjectDir>
+  <JsonFileName>toposun.json</JsonFileName>
+  <Resources>C:\Project\GitHub\Toposun\toposun\authoring\ui\Resources</Resources>
+  <JsonFolder>C:\Project\GitHub\Toposun\toposun\authoring\ui\Json</JsonFolder>
+  <JsonList>
+    <string>title.json</string>
+  </JsonList>
+  <imageFileList />
+  <JsonSuffix>.json</JsonSuffix>
+  <CurrentUIJson />
+  <CanvasSize>
+    <Width>1920</Width>
+    <Height>1080</Height>
+  </CanvasSize>
+</UIProject>

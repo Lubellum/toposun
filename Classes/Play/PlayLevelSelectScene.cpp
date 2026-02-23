@@ -77,35 +77,25 @@ void CPlayLevelSelectScene::Initilize(const std::string& aParameter)
     image->setPosition(cocos2d::Vec2(0.0, 0.0));
     this->addChild(image, 0);
 
-    auto touchPanel1 = cocos2d::ui::Layout::create();
-    touchPanel1->setContentSize(cocos2d::Size(500, 900));
-    touchPanel1->setBackGroundColorType(cocos2d::ui::Layout::BackGroundColorType::SOLID);
-    touchPanel1->setColor(cocos2d::Color3B::GREEN);
-    touchPanel1->setOpacity(50);
-    touchPanel1->setTouchEnabled(true);
-    touchPanel1->addClickEventListener(CreateDecisionEvent(0));
-    touchPanel1->setPosition(cocos2d::Vec2(120, 90));
-    this->addChild(touchPanel1);
+    cocos2d::Vec2 positions[(int)tLevel::nNum] =
+    {
+        cocos2d::Vec2(120, 90),
+        cocos2d::Vec2(710, 90),
+        cocos2d::Vec2(1310, 90)
+    };
 
-    auto touchPanel2 = cocos2d::ui::Layout::create();
-    touchPanel2->setContentSize(cocos2d::Size(500, 900));
-    touchPanel2->setBackGroundColorType(cocos2d::ui::Layout::BackGroundColorType::SOLID);
-    touchPanel2->setColor(cocos2d::Color3B::GREEN);
-    touchPanel2->setOpacity(50);
-    touchPanel2->setTouchEnabled(true);
-    touchPanel2->addClickEventListener(CreateDecisionEvent(1));
-    touchPanel2->setPosition(cocos2d::Vec2(710, 90));
-    this->addChild(touchPanel2);
-
-    auto touchPanel3 = cocos2d::ui::Layout::create();
-    touchPanel3->setContentSize(cocos2d::Size(500, 900));
-    touchPanel3->setBackGroundColorType(cocos2d::ui::Layout::BackGroundColorType::SOLID);
-    touchPanel3->setColor(cocos2d::Color3B::GREEN);
-    touchPanel3->setOpacity(50);
-    touchPanel3->setTouchEnabled(true);
-    touchPanel3->addClickEventListener(CreateDecisionEvent(2));
-    touchPanel3->setPosition(cocos2d::Vec2(1310, 90));
-    this->addChild(touchPanel3);
+    for (int i = 0; i < static_cast<int>(tLevel::nNum); ++i)
+    {
+        auto touchPanel = cocos2d::ui::Layout::create();
+        touchPanel->setContentSize(cocos2d::Size(500, 900));
+        touchPanel->setBackGroundColorType(cocos2d::ui::Layout::BackGroundColorType::SOLID);
+        touchPanel->setColor(cocos2d::Color3B::GREEN);
+        touchPanel->setOpacity(50);
+        touchPanel->setTouchEnabled(true);
+        touchPanel->addClickEventListener(CreateDecisionEvent(i));
+        touchPanel->setPosition(positions[i]);
+        this->addChild(touchPanel);
+    }
 }
 
 // ------------------------------------------------------------------------- //

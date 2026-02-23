@@ -23,6 +23,14 @@ public:
     std::function<void(Ref*)> CreateDecisionEvent(int aLevel);
 
 private:
+    // 難易度
+    enum class tLevel : int
+    {
+        nEasy,
+        nNormal,
+        nHard,
+        nNum
+    };
     std::string mParameter;
 };
 

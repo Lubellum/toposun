@@ -76,6 +76,14 @@ void CPlaySummaryScene::Initilize(const std::string& aParameter)
     image->setAnchorPoint(Vec2(0.0, 0.0));
     image->setPosition(Vec2(0.0, 0.0));
     this->addChild(image, 0);
+
+    auto value = cocos2d::StringUtils::format(u8"むずかしさ :%s", mParameter.c_str());
+    auto label = Label::createWithTTF(value, "fonts/oshigo.ttf", 100);
+    // position the label on the center of the screen
+    label->setPosition(Vec2(800, 700));
+    label->setString(value);
+    // add the label as a child to this layer
+    this->addChild(label, 1);
 }
 
 // ------------------------------------------------------------------------- //

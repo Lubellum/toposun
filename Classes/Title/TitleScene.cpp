@@ -2,6 +2,7 @@
 #include "./Play/PlayLevelSelectScene.h"
 #include "SimpleAudioEngine.h"
 #include "ui/UIImageView.h"
+#include "cocostudio/CocoStudio.h"
 
 USING_NS_CC;
 
@@ -41,6 +42,13 @@ bool CTitleScene::init()
         return false;
     }
 
+    auto guiReader = cocostudio::GUIReader::getInstance();
+    auto root = guiReader->widgetFromJsonFile("json/title.json");
+    this->addChild(root);
+    auto image = dynamic_cast<cocos2d::ui::ImageView*>(root->getChildByName("title_bg"));
+    image->addClickEventListener(CreateDecisionEvent());
+
+#if 0
     auto image = cocos2d::ui::ImageView::create("title_bg.png");
     image->setTouchEnabled(true);
     image->addClickEventListener(CreateDecisionEvent());
@@ -48,6 +56,7 @@ bool CTitleScene::init()
     image->setAnchorPoint(Vec2(0.0, 0.0));
     image->setPosition(Vec2(0.0, 0.0));
     this->addChild(image, 0);
+#endif
 
     return true;
 }
