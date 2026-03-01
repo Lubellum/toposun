@@ -11,11 +11,21 @@ USING_NS_CC;
 // ========================================================================= //
 
 // ------------------------------------------------------------------------- //
+// 生成
+// ------------------------------------------------------------------------- //
+CTitleScene* CTitleScene::create(const std::string& aParameter)
+{
+    auto* instance = CTitleScene::create();
+    instance->Initilize(aParameter);
+    return instance;
+}
+
+// ------------------------------------------------------------------------- //
 // シーン生成
 // ------------------------------------------------------------------------- //
-Scene* CTitleScene::createScene()
+Scene* CTitleScene::CreateScene()
 {
-    return CTitleScene::create();
+    return CTitleScene::create(std::string());
 }
 
 // ------------------------------------------------------------------------- //
@@ -42,22 +52,6 @@ bool CTitleScene::init()
         return false;
     }
 
-    auto guiReader = cocostudio::GUIReader::getInstance();
-    auto root = guiReader->widgetFromJsonFile("json/title.json");
-    this->addChild(root);
-    auto image = dynamic_cast<cocos2d::ui::ImageView*>(root->getChildByName("title_bg"));
-    image->addClickEventListener(CreateDecisionEvent());
-
-#if 0
-    auto image = cocos2d::ui::ImageView::create("title_bg.png");
-    image->setTouchEnabled(true);
-    image->addClickEventListener(CreateDecisionEvent());
-    image->setName("title_bg");
-    image->setAnchorPoint(Vec2(0.0, 0.0));
-    image->setPosition(Vec2(0.0, 0.0));
-    this->addChild(image, 0);
-#endif
-
     return true;
 }
 
@@ -68,6 +62,19 @@ void CTitleScene::update(float delta)
 {
 
 }
+
+// ------------------------------------------------------------------------- //
+// 初期化
+// ------------------------------------------------------------------------- //
+void CTitleScene::Initilize(const std::string& aParameter)
+{
+    auto guiReader = cocostudio::GUIReader::getInstance();
+    auto root = guiReader->widgetFromJsonFile("json/title.json");
+    this->addChild(root);
+    auto image = dynamic_cast<cocos2d::ui::ImageView*>(root->getChildByName("title_bg"));
+    image->addClickEventListener(CreateDecisionEvent());
+}
+
 
 // ------------------------------------------------------------------------- //
 // 決定イベント生成
