@@ -4,4 +4,8 @@
     <Project>title</Project>
     <GuidesList />
   </GuidesProject>
+  <GuidesProject>
+    <Project>playlevelselect</Project>
+    <GuidesList />
+  </GuidesProject>
 </ArrayOfGuidesProject>

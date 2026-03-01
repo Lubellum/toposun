@@ -9,10 +9,11 @@
   <JsonFolder>C:\Project\GitHub\Toposun\toposun\authoring\ui\Json</JsonFolder>
   <JsonList>
     <string>title.json</string>
+    <string>playlevelselect.json</string>
   </JsonList>
   <imageFileList />
   <JsonSuffix>.json</JsonSuffix>
-  <CurrentUIJson />
+  <CurrentUIJson>playlevelselect.json</CurrentUIJson>
   <CanvasSize>
     <Width>1920</Width>
     <Height>1080</Height>
