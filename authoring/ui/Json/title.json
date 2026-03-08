@@ -22,7 +22,7 @@
         "options": {
           "__type": "ComGUIImageViewSurrogate:#EditorCommon.JsonModel.Component.GUI",
           "classname": "ImageView",
-          "name": "title_bg",
+          "name": "image_bg",
           "ZOrder": 0,
           "actiontag": 44,
           "anchorPointX": 0,

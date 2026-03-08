@@ -13,7 +13,7 @@
   </JsonList>
   <imageFileList />
   <JsonSuffix>.json</JsonSuffix>
-  <CurrentUIJson>playlevelselect.json</CurrentUIJson>
+  <CurrentUIJson />
   <CanvasSize>
     <Width>1920</Width>
     <Height>1080</Height>
