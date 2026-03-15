@@ -1,5 +1,7 @@
 ﻿#include "TestScene.h"
 #include "SimpleAudioEngine.h"
+#include "ui/UILayout.h"
+
 
 USING_NS_CC;
 
@@ -118,6 +120,26 @@ bool CTestScene::init()
 
     this->scheduleUpdate();
 
+    cocos2d::Vec2 positions[(int)tLevel::nNum] =
+    {
+        cocos2d::Vec2(120, 90),
+        cocos2d::Vec2(710, 90),
+        cocos2d::Vec2(1310, 90)
+    };
+
+    for (int i = 0; i < static_cast<int>(tLevel::nNum); ++i)
+    {
+        auto touchPanel = cocos2d::ui::Layout::create();
+        touchPanel->setContentSize(cocos2d::Size(500, 900));
+        touchPanel->setBackGroundColorType(cocos2d::ui::Layout::BackGroundColorType::SOLID);
+        touchPanel->setColor(cocos2d::Color3B::GREEN);
+        touchPanel->setOpacity(50);
+        touchPanel->setTouchEnabled(true);
+        touchPanel->addClickEventListener(CreateDecisionEvent(i));
+        touchPanel->setPosition(positions[i]);
+        this->addChild(touchPanel);
+    }
+
     return true;
 }
 
@@ -165,4 +187,20 @@ void CTestScene::menuCloseCallback(Ref* pSender)
     {
         // される
     }
+}
+
+// ------------------------------------------------------------------------- //
+// 決定イベント生成
+// ------------------------------------------------------------------------- //
+std::function<void(Ref*)> CTestScene::CreateDecisionEvent(int aLevel)
+{
+    return [this, aLevel](cocos2d::Ref*)
+        {
+            //cocos2d::log(mParameter.c_str());
+            cocos2d::log(std::to_string(aLevel).c_str());
+            auto director = Director::getInstance();
+            auto scene = CTestScene::createScene();
+            auto transition = TransitionFade::create(0.5, scene);
+            director->replaceScene(transition);
+        };
 }

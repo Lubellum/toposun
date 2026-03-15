@@ -17,12 +17,22 @@ public:
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
     
+    std::function<void(Ref*)> CreateDecisionEvent(int aLevel);
 
 private:
+    // 難易度
+    enum class tLevel : int
+    {
+        nEasy,
+        nNormal,
+        nHard,
+        nNum
+    };
+
     cocos2d::Size mVisibleSize;
     cocos2d::Vec2 mOrigin;
     float mRemainingTime;
-
+    std::string mParameter;
 };
 
 #endif // TESTSCENE_H
