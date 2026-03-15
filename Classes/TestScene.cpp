@@ -1,5 +1,4 @@
-﻿#if 0
-#include "HelloWorldScene.h"
+﻿#include "TestScene.h"
 #include "SimpleAudioEngine.h"
 
 USING_NS_CC;
@@ -166,26 +165,4 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
     {
         // される
     }
-
-    cocos2d::Vec2 positions[(int)tLevel::nNum] =
-    {
-        cocos2d::Vec2(120, 90),
-        cocos2d::Vec2(710, 90),
-        cocos2d::Vec2(1310, 90)
-    };
-
-    for (int i = 0; i < static_cast<int>(tLevel::nNum); ++i)
-    {
-        auto touchPanel = cocos2d::ui::Layout::create();
-        touchPanel->setContentSize(cocos2d::Size(500, 900));
-        touchPanel->setBackGroundColorType(cocos2d::ui::Layout::BackGroundColorType::SOLID);
-        touchPanel->setColor(cocos2d::Color3B::GREEN);
-        touchPanel->setOpacity(50);
-        touchPanel->setTouchEnabled(true);
-        touchPanel->addClickEventListener(CreateDecisionEvent(i));
-        touchPanel->setPosition(positions[i]);
-        this->addChild(touchPanel);
-    }
 }
-
-#endif
