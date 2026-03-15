@@ -3,7 +3,7 @@
 
 USING_NS_CC;
 
-HelloWorld::HelloWorld()
+CTestScene::CTestScene()
     : mVisibleSize(Director::getInstance()->getVisibleSize())
     , mOrigin(Director::getInstance()->getVisibleOrigin())
     , mRemainingTime(60)
@@ -11,20 +11,20 @@ HelloWorld::HelloWorld()
 
 }
 
-Scene* HelloWorld::createScene()
+Scene* CTestScene::createScene()
 {
-    return HelloWorld::create();
+    return CTestScene::create();
 }
 
 // Print useful error message instead of segfaulting when files are not there.
 static void problemLoading(const char* filename)
 {
     printf("Error while loading: %s\n", filename);
-    printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in HelloWorldScene.cpp\n");
+    printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in CTestSceneScene.cpp\n");
 }
 
 // on "init" you need to initialize your instance
-bool HelloWorld::init()
+bool CTestScene::init()
 {
     //////////////////////////////
     // 1. super init first
@@ -41,7 +41,7 @@ bool HelloWorld::init()
     auto closeItem = MenuItemImage::create(
                                            "CloseNormal.png",
                                            "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
+                                           CC_CALLBACK_1(CTestScene::menuCloseCallback, this));
 
     if (closeItem == nullptr ||
         closeItem->getContentSize().width <= 0 ||
@@ -121,7 +121,7 @@ bool HelloWorld::init()
     return true;
 }
 
-void HelloWorld::update(float delta)
+void CTestScene::update(float delta)
 {
     auto sprite = dynamic_cast<Sprite*>(this->getChildByName("HelloWorld"));
     //sprite->setRotation(5.0 + sprite->getRotation());
@@ -146,7 +146,7 @@ void HelloWorld::update(float delta)
 }
 
 
-void HelloWorld::menuCloseCallback(Ref* pSender)
+void CTestScene::menuCloseCallback(Ref* pSender)
 {
     //Close the cocos2d-x game scene and quit the application
     Director::getInstance()->end();
