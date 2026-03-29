@@ -2,6 +2,8 @@
 #include "PlayScene.h"
 #include "SimpleAudioEngine.h"
 #include "ui/UIImageView.h"
+#include "ui/UIText.h"
+#include "cocostudio/CocoStudio.h"
 
 // todo: 消す
 USING_NS_CC;
@@ -69,21 +71,16 @@ void CPlaySummaryScene::update(float delta)
 void CPlaySummaryScene::Initilize(const std::string& aParameter)
 {
     mParameter = aParameter;
-    auto image = cocos2d::ui::ImageView::create("playSummary_bg.png");
-    image->setTouchEnabled(true);
+    auto guiReader = cocostudio::GUIReader::getInstance();
+    auto root = guiReader->widgetFromJsonFile("json/playsummary.json");
+    this->addChild(root);
+    auto image = dynamic_cast<cocos2d::ui::ImageView*>(root->getChildByName("image_bg"));
     image->addClickEventListener(CreateDecisionEvent());
-    image->setName("playSummary_bg");
-    image->setAnchorPoint(Vec2(0.0, 0.0));
-    image->setPosition(Vec2(0.0, 0.0));
-    this->addChild(image, 0);
-
-    auto value = cocos2d::StringUtils::format(u8"むずかしさ :%s", mParameter.c_str());
-    auto label = Label::createWithTTF(value, "fonts/oshigo.ttf", 100);
-    // position the label on the center of the screen
-    label->setPosition(Vec2(800, 700));
-    label->setString(value);
-    // add the label as a child to this layer
-    this->addChild(label, 1);
+    
+    auto textLevel = dynamic_cast<cocos2d::ui::Text*>(root->getChildByName("text_level"));
+    auto beforeSentence = textLevel->getString();
+    auto value = cocos2d::StringUtils::format(beforeSentence.c_str(), mParameter.c_str());
+    textLevel->setString(value);
 }
 
 // ------------------------------------------------------------------------- //
