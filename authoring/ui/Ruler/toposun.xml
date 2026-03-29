@@ -8,4 +8,8 @@
     <Project>playlevelselect</Project>
     <GuidesList />
   </GuidesProject>
+  <GuidesProject>
+    <Project>playsummary</Project>
+    <GuidesList />
+  </GuidesProject>
 </ArrayOfGuidesProject>

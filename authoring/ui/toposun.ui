@@ -10,10 +10,11 @@
   <JsonList>
     <string>title.json</string>
     <string>playlevelselect.json</string>
+    <string>playsummary.json</string>
   </JsonList>
   <imageFileList />
   <JsonSuffix>.json</JsonSuffix>
-  <CurrentUIJson />
+  <CurrentUIJson>playsummary.json</CurrentUIJson>
   <CanvasSize>
     <Width>1920</Width>
     <Height>1080</Height>
