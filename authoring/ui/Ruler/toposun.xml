@@ -12,4 +12,8 @@
     <Project>playsummary</Project>
     <GuidesList />
   </GuidesProject>
+  <GuidesProject>
+    <Project>playresult</Project>
+    <GuidesList />
+  </GuidesProject>
 </ArrayOfGuidesProject>
