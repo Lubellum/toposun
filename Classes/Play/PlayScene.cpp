@@ -1,4 +1,5 @@
 ﻿#include "PlayScene.h"
+#include "PlayResultScene.h"
 #include "SimpleAudioEngine.h"
 #include "ui/UIImageView.h"
 
@@ -85,5 +86,9 @@ std::function<void(Ref*)> CPlayScene::CreateDecisionEvent()
     return [this](cocos2d::Ref*)
         {
             cocos2d::log(mParameter.c_str());
+            auto director = Director::getInstance();
+            auto scene = CPlayResultScene::CreateScene("eeeeeeeee");
+            auto transition = TransitionFade::create(0.5, scene);
+            director->replaceScene(transition);
         };
 }
