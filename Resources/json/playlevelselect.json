@@ -79,7 +79,7 @@
             "options": {
               "__type": "ComGUIPanelSurrogate:#EditorCommon.JsonModel.Component.GUI",
               "classname": "Panel",
-              "name": "touchPanel01",
+              "name": "panel_touch_01",
               "ZOrder": 0,
               "actiontag": 51,
               "anchorPointX": 0,
@@ -141,7 +141,7 @@
             "options": {
               "__type": "ComGUIPanelSurrogate:#EditorCommon.JsonModel.Component.GUI",
               "classname": "Panel",
-              "name": "touchPanel02",
+              "name": "panel_touch_02",
               "ZOrder": 0,
               "actiontag": 52,
               "anchorPointX": 0,
@@ -203,7 +203,7 @@
             "options": {
               "__type": "ComGUIPanelSurrogate:#EditorCommon.JsonModel.Component.GUI",
               "classname": "Panel",
-              "name": "touchPanel03",
+              "name": "panel_touch_03",
               "ZOrder": 0,
               "actiontag": 53,
               "anchorPointX": 0,
@@ -262,7 +262,7 @@
         "options": {
           "__type": "ComGUIPanelSurrogate:#EditorCommon.JsonModel.Component.GUI",
           "classname": "Panel",
-          "name": "touchPanels",
+          "name": "panel_touches",
           "ZOrder": 0,
           "actiontag": 55,
           "anchorPointX": 0,
