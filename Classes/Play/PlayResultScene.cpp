@@ -96,7 +96,7 @@ void CPlayResultScene::Initilize(const std::string& aParameter)
 }
 
 // ------------------------------------------------------------------------- //
-// 決定イベント生成
+// プレイ画面遷移イベント生成
 // ------------------------------------------------------------------------- //
 std::function<void(Ref*)> CPlayResultScene::CreatePlayEvent()
 {
@@ -111,7 +111,7 @@ std::function<void(Ref*)> CPlayResultScene::CreatePlayEvent()
 }
 
 // ------------------------------------------------------------------------- //
-// 決定イベント生成
+// プレイ難易度選択画面遷移イベント生成
 // ------------------------------------------------------------------------- //
 std::function<void(Ref*)> CPlayResultScene::CreateLevelSelectEvent()
 {
