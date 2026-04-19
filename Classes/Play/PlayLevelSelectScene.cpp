@@ -75,7 +75,7 @@ void CPlayLevelSelectScene::Initilize(const std::string& aParameter)
     auto root = guiReader->widgetFromJsonFile("json/playlevelselect.json");
     this->addChild(root);
 
-    auto touchPanels = dynamic_cast<cocos2d::ui::Layout*>(root->getChildByName("touchPanels"));
+    auto touchPanels = dynamic_cast<cocos2d::ui::Layout*>(root->getChildByName("panel_touches"));
     auto children = touchPanels->getChildren();
     for (int i = 0; i < children.size(); ++i)
     {
