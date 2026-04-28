@@ -15,7 +15,7 @@
   </JsonList>
   <imageFileList />
   <JsonSuffix>.json</JsonSuffix>
-  <CurrentUIJson>playresult.json</CurrentUIJson>
+  <CurrentUIJson>title.json</CurrentUIJson>
   <CanvasSize>
     <Width>1920</Width>
     <Height>1080</Height>
