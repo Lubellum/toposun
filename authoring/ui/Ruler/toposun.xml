@@ -20,4 +20,8 @@
     <Project>playpause</Project>
     <GuidesList />
   </GuidesProject>
+  <GuidesProject>
+    <Project>play</Project>
+    <GuidesList />
+  </GuidesProject>
 </ArrayOfGuidesProject>

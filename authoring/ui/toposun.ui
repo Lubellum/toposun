@@ -9,6 +9,7 @@
   <JsonFolder>C:\Project\GitHub\Toposun\toposun\authoring\ui\Json</JsonFolder>
   <JsonList>
     <string>title.json</string>
+    <string>play.json</string>
     <string>playlevelselect.json</string>
     <string>playsummary.json</string>
     <string>playresult.json</string>
