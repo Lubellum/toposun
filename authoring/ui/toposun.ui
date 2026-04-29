@@ -12,6 +12,7 @@
     <string>playlevelselect.json</string>
     <string>playsummary.json</string>
     <string>playresult.json</string>
+    <string>playpause.json</string>
   </JsonList>
   <imageFileList />
   <JsonSuffix>.json</JsonSuffix>
