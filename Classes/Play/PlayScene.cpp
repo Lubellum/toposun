@@ -2,6 +2,7 @@
 #include "PlayResultScene.h"
 #include "SimpleAudioEngine.h"
 #include "ui/UIImageView.h"
+#include "cocostudio/CocoStudio.h"
 
 // todo: 消す
 USING_NS_CC;
@@ -69,13 +70,12 @@ void CPlayScene::update(float delta)
 void CPlayScene::Initilize(const std::string& aParameter)
 {
     mParameter = aParameter;
-    auto image = cocos2d::ui::ImageView::create("play_bg.png");
-    image->setTouchEnabled(true);
+    auto guiReader = cocostudio::GUIReader::getInstance();
+    auto root = guiReader->widgetFromJsonFile("json/play.json");
+    this->addChild(root);
+    auto image = dynamic_cast<cocos2d::ui::ImageView*>(
+        root->getChildByName("image_bg"));
     image->addClickEventListener(CreateDecisionEvent());
-    image->setName("play_bg");
-    image->setAnchorPoint(Vec2(0.0, 0.0));
-    image->setPosition(Vec2(0.0, 0.0));
-    this->addChild(image, 0);
 }
 
 // ------------------------------------------------------------------------- //
