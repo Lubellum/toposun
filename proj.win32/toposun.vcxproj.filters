@@ -42,6 +42,9 @@
     <ClCompile Include="..\Classes\Play\PlayResultScene.cpp">
       <Filter>src\Play</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Play\PlayPauseScene.cpp">
+      <Filter>src\Play</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -66,6 +69,9 @@
       <Filter>src\Play</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Play\PlayResultScene.h">
+      <Filter>src\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Play\PlayPauseScene.h">
       <Filter>src\Play</Filter>
     </ClInclude>
   </ItemGroup>
