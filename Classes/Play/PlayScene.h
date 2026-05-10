@@ -21,6 +21,7 @@ public:
     
     void Initilize(const std::string& aParameter);
     std::function<void(Ref*)> CreateDecisionEvent();
+    std::function<void(Ref*)> CreatePauseEvent();
 
 private:
     std::string mParameter;

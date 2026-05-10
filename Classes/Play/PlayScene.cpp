@@ -1,5 +1,6 @@
 ﻿#include "PlayScene.h"
 #include "PlayResultScene.h"
+#include "PlayPauseScene.h"
 #include "SimpleAudioEngine.h"
 #include "ui/UIImageView.h"
 #include "cocostudio/CocoStudio.h"
@@ -76,6 +77,10 @@ void CPlayScene::Initilize(const std::string& aParameter)
     auto image = dynamic_cast<cocos2d::ui::ImageView*>(
         root->getChildByName("image_bg"));
     image->addClickEventListener(CreateDecisionEvent());
+
+    auto button = dynamic_cast<cocos2d::ui::Layout*>(
+        root->getChildByName("panel_pause"));
+    button->addClickEventListener(CreatePauseEvent());
 }
 
 // ------------------------------------------------------------------------- //
@@ -88,6 +93,21 @@ std::function<void(Ref*)> CPlayScene::CreateDecisionEvent()
             cocos2d::log(mParameter.c_str());
             auto director = Director::getInstance();
             auto scene = CPlayResultScene::CreateScene("eeeeeeeee");
+            auto transition = TransitionFade::create(0.5, scene);
+            director->replaceScene(transition);
+        };
+}
+
+// ------------------------------------------------------------------------- //
+// ポーズ画面遷移イベント生成
+// ------------------------------------------------------------------------- //
+std::function<void(Ref*)> CPlayScene::CreatePauseEvent()
+{
+    return [this](cocos2d::Ref*)
+        {
+            cocos2d::log(mParameter.c_str());
+            auto director = Director::getInstance();
+            auto scene = CPlayPauseScene::CreateScene("eeeeeeeee");
             auto transition = TransitionFade::create(0.5, scene);
             director->replaceScene(transition);
         };
