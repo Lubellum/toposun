@@ -79,7 +79,7 @@
             "options": {
               "__type": "ComGUILabelSurrogate:#EditorCommon.JsonModel.Component.GUI",
               "classname": "Label",
-              "name": "taxt_pause",
+              "name": "text_pause",
               "ZOrder": 0,
               "actiontag": 93,
               "anchorPointX": 0.5,
