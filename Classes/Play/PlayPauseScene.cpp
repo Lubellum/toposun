@@ -76,8 +76,6 @@ void CPlayPauseScene::Initilize(const std::string& aParameter)
     auto guiReader = cocostudio::GUIReader::getInstance();
     auto root = guiReader->widgetFromJsonFile("json/playpause.json");
     this->addChild(root);
-    auto image = dynamic_cast<cocos2d::ui::ImageView*>(
-        root->getChildByName("image_bg"));
     
     auto textLevel = dynamic_cast<cocos2d::ui::Text*>(
         root->getChildByName("text_level"));
@@ -104,9 +102,7 @@ std::function<void(Ref*)> CPlayPauseScene::CreatePlayEvent()
         {
             cocos2d::log(mParameter.c_str());
             auto director = Director::getInstance();
-            auto scene = CPlayScene::CreateScene("eeeeeeeee");
-            auto transition = TransitionFade::create(0.5, scene);
-            director->replaceScene(transition);
+            director->popScene();
         };
 }
 

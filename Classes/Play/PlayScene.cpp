@@ -108,7 +108,6 @@ std::function<void(Ref*)> CPlayScene::CreatePauseEvent()
             cocos2d::log(mParameter.c_str());
             auto director = Director::getInstance();
             auto scene = CPlayPauseScene::CreateScene("eeeeeeeee");
-            auto transition = TransitionFade::create(0.5, scene);
-            director->replaceScene(transition);
+            director->pushScene(scene);
         };
 }
