@@ -101,8 +101,7 @@ std::function<void(Ref*)> CPlayPauseScene::CreatePlayEvent()
     return [this](cocos2d::Ref*)
         {
             cocos2d::log(mParameter.c_str());
-            auto director = Director::getInstance();
-            director->popScene();
+            this->removeFromParent();
         };
 }
 
