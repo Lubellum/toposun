@@ -81,6 +81,35 @@ void CPlayScene::Initilize(const std::string& aParameter)
     auto button = dynamic_cast<cocos2d::ui::Layout*>(
         root->getChildByName("panel_pause"));
     button->addClickEventListener(CreatePauseEvent());
+
+    auto player = dynamic_cast<cocos2d::ui::Layout*>(
+        root->getChildByName("panel_player"));
+    player->setPosition(cocos2d::Vec2(1000, 400));
+
+    auto listener = EventListenerKeyboard::create();
+    listener->onKeyPressed = [this, player](cocos2d::EventKeyboard::KeyCode aKeyCode, cocos2d::Event* aEvent)
+        {
+            Vec2 position = player->getPosition();
+            switch (aKeyCode)
+            {
+            case cocos2d::EventKeyboard::KeyCode::KEY_W:
+                player->setPositionY(position.y + 50);
+                break;
+            case cocos2d::EventKeyboard::KeyCode::KEY_S:
+                player->setPositionY(position.y - 50);
+                break;
+            case cocos2d::EventKeyboard::KeyCode::KEY_A:
+                player->setPositionX(position.x - 50);
+                break;
+            case cocos2d::EventKeyboard::KeyCode::KEY_D:
+                player->setPositionX(position.x + 50);
+                break;
+            default:
+                break;
+            }
+            return true;
+        };
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
 }
 
 // ------------------------------------------------------------------------- //
