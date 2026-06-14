@@ -1,4 +1,5 @@
-﻿#include "AppDelegate.h"
+﻿#include "stdafx.h"
+#include "AppDelegate.h"
 #include "TestScene.h"
 #include "Title/TitleScene.h"
 

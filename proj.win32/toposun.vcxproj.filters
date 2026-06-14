@@ -45,6 +45,7 @@
     <ClCompile Include="..\Classes\Play\PlayPauseScene.cpp">
       <Filter>src\Play</Filter>
     </ClCompile>
+    <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -74,6 +75,7 @@
     <ClInclude Include="..\Classes\Play\PlayPauseScene.h">
       <Filter>src\Play</Filter>
     </ClInclude>
+    <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

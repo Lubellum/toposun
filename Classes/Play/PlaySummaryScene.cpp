@@ -1,4 +1,5 @@
-﻿#include "PlaySummaryScene.h"
+﻿#include "stdafx.h"
+#include "PlaySummaryScene.h"
 #include "PlayScene.h"
 #include "SimpleAudioEngine.h"
 #include "ui/UIImageView.h"

@@ -1,4 +1,5 @@
-﻿#include "PlayLevelSelectScene.h"
+﻿#include "stdafx.h"
+#include "PlayLevelSelectScene.h"
 #include "PlaySummaryScene.h"
 #include "SimpleAudioEngine.h"
 #include "ui/UIImageView.h"

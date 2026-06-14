@@ -1,4 +1,5 @@
-﻿#include "TestScene.h"
+﻿#include "stdafx.h"
+#include "TestScene.h"
 #include "SimpleAudioEngine.h"
 #include "ui/UILayout.h"
 
