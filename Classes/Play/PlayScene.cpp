@@ -94,56 +94,7 @@ void CPlayScene::Initilize(const std::string& aParameter)
     auto visibleOrigin = cocos2d::Director::getInstance()->getVisibleOrigin();
 
     auto listener = EventListenerKeyboard::create();
-
-    // プレイヤーの移動・補正処理
-    listener->onKeyPressed = [this, player, visibleSize, visibleOrigin](cocos2d::EventKeyboard::KeyCode aKeyCode, cocos2d::Event* aEvent)
-        {
-            // 移動処理
-            Vec2 position = player->getPosition();
-
-            switch (aKeyCode)
-            {
-            case cocos2d::EventKeyboard::KeyCode::KEY_W: // 上
-                position.y += 50;
-                break;
-            case cocos2d::EventKeyboard::KeyCode::KEY_S: // 下
-                position.y -= 50;
-                break;
-            case cocos2d::EventKeyboard::KeyCode::KEY_A: // 左
-                position.x -= 50;
-                break;
-            case cocos2d::EventKeyboard::KeyCode::KEY_D: // 右
-                position.x += 50;
-                break;
-            default:
-                break;
-            }
-
-            // 補正処理
-            // 上
-            if (position.y + player->getContentSize().height > visibleSize.height)
-            {
-                position.y = visibleSize.height - player->getContentSize().height;
-            }
-            // 下
-            if (position.y < visibleOrigin.y)
-            {
-                position.y = visibleOrigin.y;
-            }
-            // 左
-            if (position.x < visibleOrigin.x)
-            {
-                position.x = visibleOrigin.x;
-            }
-            // 右
-            if (position.x + player->getContentSize().width > visibleSize.width)
-            {
-                position.x = visibleSize.width - player->getContentSize().width;
-            }
-
-            player->setPosition(position);
-            return true;
-        };
+    listener->onKeyPressed = CreateKeyPressedEvent(player, visibleSize, visibleOrigin);
 
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
 }
@@ -175,4 +126,64 @@ std::function<void(Ref*)> CPlayScene::CreatePauseEvent()
             auto scene = CPlayPauseScene::CreateScene("eeeeeeeee");
             this->addChild(scene);
         };
+}
+
+// ------------------------------------------------------------------------- //
+// 《キーボード》押下イベント生成
+// ------------------------------------------------------------------------- //
+CPlayScene::tKeyboardEvent CPlayScene::CreateKeyPressedEvent(
+    cocos2d::ui::Layout* aPlayer,
+    cocos2d::Size aVisibleSize,
+    cocos2d::Vec2 aVisibleOrigin)
+{
+    // プレイヤーの移動・補正処理
+    return [this, aPlayer, aVisibleSize, aVisibleOrigin](
+        cocos2d::EventKeyboard::KeyCode aKeyCode, cocos2d::Event* aEvent)
+    {
+        // 移動処理
+        Vec2 position = aPlayer->getPosition();
+
+        switch (aKeyCode)
+        {
+        case cocos2d::EventKeyboard::KeyCode::KEY_W: // 上
+            position.y += 50;
+            break;
+        case cocos2d::EventKeyboard::KeyCode::KEY_S: // 下
+            position.y -= 50;
+            break;
+        case cocos2d::EventKeyboard::KeyCode::KEY_A: // 左
+            position.x -= 50;
+            break;
+        case cocos2d::EventKeyboard::KeyCode::KEY_D: // 右
+            position.x += 50;
+            break;
+        default:
+            break;
+        }
+
+        // 補正処理
+        // 上
+        if (position.y + aPlayer->getContentSize().height > aVisibleSize.height)
+        {
+            position.y = aVisibleSize.height - aPlayer->getContentSize().height;
+        }
+        // 下
+        if (position.y < aVisibleOrigin.y)
+        {
+            position.y = aVisibleOrigin.y;
+        }
+        // 左
+        if (position.x < aVisibleOrigin.x)
+        {
+            position.x = aVisibleOrigin.x;
+        }
+        // 右
+        if (position.x + aPlayer->getContentSize().width > aVisibleSize.width)
+        {
+            position.x = aVisibleSize.width - aPlayer->getContentSize().width;
+        }
+
+        aPlayer->setPosition(position);
+        return true;
+    };
 }
