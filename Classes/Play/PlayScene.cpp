@@ -102,7 +102,7 @@ void CPlayScene::Initilize(const std::string& aParameter)
 // ------------------------------------------------------------------------- //
 // 決定イベント生成
 // ------------------------------------------------------------------------- //
-std::function<void(Ref*)> CPlayScene::CreateDecisionEvent()
+CPlayScene::tClickEvent CPlayScene::CreateDecisionEvent()
 {
     return [this](cocos2d::Ref*)
         {
@@ -117,7 +117,7 @@ std::function<void(Ref*)> CPlayScene::CreateDecisionEvent()
 // ------------------------------------------------------------------------- //
 // ポーズ画面遷移イベント生成
 // ------------------------------------------------------------------------- //
-std::function<void(Ref*)> CPlayScene::CreatePauseEvent()
+CPlayScene::tClickEvent CPlayScene::CreatePauseEvent()
 {
     return [this](cocos2d::Ref*)
         {
