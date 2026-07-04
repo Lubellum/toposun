@@ -77,16 +77,8 @@ void CPlayScene::Initilize(const std::string& aParameter)
     this->addChild(root);
     SetupUI(root);
 
-    // 画面のサイズ取得
-    auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
-
-    // 原点位置取得
-    auto visibleOrigin = cocos2d::Director::getInstance()->getVisibleOrigin();
-
-    auto player = dynamic_cast<cocos2d::ui::Layout*>(
-        root->getChildByName("panel_player"));
     auto listener = EventListenerKeyboard::create();
-    listener->onKeyPressed = CreateKeyPressedEvent(player, visibleSize, visibleOrigin);
+    listener->onKeyPressed = CreateKeyPressedEvent(root);
 
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
 }
@@ -142,16 +134,23 @@ CPlayScene::tClickEvent CPlayScene::CreatePauseEvent()
 // 《キーボード》押下イベント生成
 // ------------------------------------------------------------------------- //
 CPlayScene::tKeyboardEvent CPlayScene::CreateKeyPressedEvent(
-    cocos2d::ui::Layout* aPlayer,
-    cocos2d::Size aVisibleSize,
-    cocos2d::Vec2 aVisibleOrigin)
+    cocos2d::ui::Widget* aRoot)
 {
+    // 画面のサイズ取得
+    auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
+
+    // 原点位置取得
+    auto visibleOrigin = cocos2d::Director::getInstance()->getVisibleOrigin();
+
+    auto player = dynamic_cast<cocos2d::ui::Layout*>(
+        aRoot->getChildByName("panel_player"));
+
     // プレイヤーの移動・補正処理
-    return [this, aPlayer, aVisibleSize, aVisibleOrigin](
+    return [this, player, visibleSize, visibleOrigin](
         cocos2d::EventKeyboard::KeyCode aKeyCode, cocos2d::Event* aEvent)
     {
         // 移動処理
-        Vec2 position = aPlayer->getPosition();
+        Vec2 position = player->getPosition();
 
         switch (aKeyCode)
         {
@@ -173,27 +172,27 @@ CPlayScene::tKeyboardEvent CPlayScene::CreateKeyPressedEvent(
 
         // 補正処理
         // 上
-        if (position.y + aPlayer->getContentSize().height > aVisibleSize.height)
+        if (position.y + player->getContentSize().height > visibleSize.height)
         {
-            position.y = aVisibleSize.height - aPlayer->getContentSize().height;
+            position.y = visibleSize.height - player->getContentSize().height;
         }
         // 下
-        if (position.y < aVisibleOrigin.y)
+        if (position.y < visibleOrigin.y)
         {
-            position.y = aVisibleOrigin.y;
+            position.y = visibleOrigin.y;
         }
         // 左
-        if (position.x < aVisibleOrigin.x)
+        if (position.x < visibleOrigin.x)
         {
-            position.x = aVisibleOrigin.x;
+            position.x = visibleOrigin.x;
         }
         // 右
-        if (position.x + aPlayer->getContentSize().width > aVisibleSize.width)
+        if (position.x + player->getContentSize().width > visibleSize.width)
         {
-            position.x = aVisibleSize.width - aPlayer->getContentSize().width;
+            position.x = visibleSize.width - player->getContentSize().width;
         }
 
-        aPlayer->setPosition(position);
+        player->setPosition(position);
         return true;
     };
 }
