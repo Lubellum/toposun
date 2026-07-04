@@ -75,17 +75,7 @@ void CPlayScene::Initilize(const std::string& aParameter)
     auto guiReader = cocostudio::GUIReader::getInstance();
     auto root = guiReader->widgetFromJsonFile("json/play.json");
     this->addChild(root);
-    auto image = dynamic_cast<cocos2d::ui::ImageView*>(
-        root->getChildByName("image_bg"));
-    image->addClickEventListener(CreateDecisionEvent());
-
-    auto button = dynamic_cast<cocos2d::ui::Layout*>(
-        root->getChildByName("panel_pause"));
-    button->addClickEventListener(CreatePauseEvent());
-
-    auto player = dynamic_cast<cocos2d::ui::Layout*>(
-        root->getChildByName("panel_player"));
-    player->setPosition(cocos2d::Vec2(1000, 400));
+    SetupUI(root);
 
     // 画面のサイズ取得
     auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
@@ -93,10 +83,30 @@ void CPlayScene::Initilize(const std::string& aParameter)
     // 原点位置取得
     auto visibleOrigin = cocos2d::Director::getInstance()->getVisibleOrigin();
 
+    auto player = dynamic_cast<cocos2d::ui::Layout*>(
+        root->getChildByName("panel_player"));
     auto listener = EventListenerKeyboard::create();
     listener->onKeyPressed = CreateKeyPressedEvent(player, visibleSize, visibleOrigin);
 
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
+}
+
+// ------------------------------------------------------------------------- //
+// UI設定
+// ------------------------------------------------------------------------- //
+void CPlayScene::SetupUI(cocos2d::ui::Widget* aRoot)
+{
+    auto image = dynamic_cast<cocos2d::ui::ImageView*>(
+        aRoot->getChildByName("image_bg"));
+    image->addClickEventListener(CreateDecisionEvent());
+
+    auto button = dynamic_cast<cocos2d::ui::Layout*>(
+        aRoot->getChildByName("panel_pause"));
+    button->addClickEventListener(CreatePauseEvent());
+
+    auto player = dynamic_cast<cocos2d::ui::Layout*>(
+        aRoot->getChildByName("panel_player"));
+    player->setPosition(cocos2d::Vec2(1000, 400));
 }
 
 // ------------------------------------------------------------------------- //
