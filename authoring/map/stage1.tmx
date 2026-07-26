@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="80" height="45" tilewidth="24" tileheight="24" infinite="0" nextlayerid="2" nextobjectid="1">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="48" height="27" tilewidth="40" tileheight="40" infinite="0" nextlayerid="2" nextobjectid="1">
  <tileset firstgid="1" source="terrain.tsx"/>
- <layer id="1" name="terrain" width="80" height="45">
+ <layer id="1" name="タイルレイヤー1" width="48" height="27">
   <data encoding="base64" compression="zlib">
-   eJzt28EJADAMA7Fk/6W7Q+9RKBJ4gft7Z2YtjTv6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jWvf2M/7ABCgQD3
+   eJzt2MEJADAMA7Fk/6W7REEETuD/vb0zs8d3Vf1W/Vb9Vv1W/Vb9Vv1W/Vb9Vv1W/Vb9lv7NfuwB2+8Akw==
   </data>
  </layer>
 </map>
