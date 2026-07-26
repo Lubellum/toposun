@@ -17,9 +17,12 @@ if not exist "%DEST_PATH%" (
     exit /b
 )
 
-:: 2. .tmx ファイルと .png ファイルのコピー実行（上書き許可）
+:: 2. .tmx ファイルと .tsx ファイルと .png ファイルのコピー実行（上書き許可）
 echo .tmx ファイルをコピー中...
 copy /Y "%SOURCE_ROOT%\*.tmx" "%DEST_PATH%\"
+
+echo .tsx ファイルをコピー中...
+copy /Y "%SOURCE_ROOT%\*.tsx" "%DEST_PATH%\"
 
 echo .png ファイルをコピー中...
 copy /Y "%SOURCE_ROOT%\*.png" "%DEST_PATH%\"
