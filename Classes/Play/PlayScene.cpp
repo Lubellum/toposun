@@ -78,7 +78,10 @@ void CPlayScene::Initilize(const std::string& aParameter)
     SetupUI(root);
 
     auto map = cocos2d::TMXTiledMap::create("map/stage1.tmx");
-    this->addChild(map);
+    //this->addChild(map);
+    auto stage = dynamic_cast<cocos2d::ui::Layout*>(
+        root->getChildByName("panel_stage"));
+    stage->addChild(map);
     auto listener = EventListenerKeyboard::create();
     listener->onKeyPressed = CreateKeyPressedEvent(root);
 
