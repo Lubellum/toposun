@@ -145,12 +145,19 @@ CPlayScene::tKeyboardEvent CPlayScene::CreateKeyPressedEvent(
     auto player = dynamic_cast<cocos2d::ui::Layout*>(
         aRoot->getChildByName("panel_player"));
 
+    auto playerDummy = dynamic_cast<cocos2d::ui::Layout*>(
+        aRoot->getChildByName("panel_player_dummy"));
+
+    auto playerDummyLocator = dynamic_cast<cocos2d::ui::Layout*>(
+        aRoot->getChildByName("panel_player_dummy_locator"));
+
     // プレイヤーの移動・補正処理
-    return [this, player, visibleSize, visibleOrigin](
+    return[this, player, playerDummy, playerDummyLocator, visibleSize, visibleOrigin](
         cocos2d::EventKeyboard::KeyCode aKeyCode, cocos2d::Event* aEvent)
     {
         // 移動処理
         Vec2 position = player->getPosition();
+        Vec2 positionDummy = playerDummy->getPosition();
 
         switch (aKeyCode)
         {
@@ -184,15 +191,30 @@ CPlayScene::tKeyboardEvent CPlayScene::CreateKeyPressedEvent(
         // 左
         if (position.x < visibleOrigin.x)
         {
-            position.x = visibleOrigin.x;
+            int dt = abs(position.x - visibleOrigin.x);
+            positionDummy.y = position.y;
+            positionDummy.x = visibleSize.width - dt;
+            if ( (position.x + player->getContentSize().width) < visibleOrigin.x)
+            {
+                position.x = positionDummy.x;
+                positionDummy = playerDummyLocator->getPosition();
+            }
         }
         // 右
         if (position.x + player->getContentSize().width > visibleSize.width)
         {
-            position.x = visibleSize.width - player->getContentSize().width;
+            int dt = abs( (position.x + player->getContentSize().width) - visibleSize.width);
+            positionDummy.y = position.y;
+            positionDummy.x = visibleOrigin.x - playerDummy->getContentSize().width + dt;
+            if ( position.x > visibleSize.width )
+            {
+                position.x = positionDummy.x;
+                positionDummy = playerDummyLocator->getPosition();
+            }
         }
 
         player->setPosition(position);
+        playerDummy->setPosition(positionDummy);
         return true;
     };
 }
