@@ -1,6 +1,7 @@
 {
     "activeFile": "",
     "expandedProjectPaths": [
+        "."
     ],
     "fileStates": {
         "stage1.tmx": {
@@ -24,10 +25,14 @@
     "map.tileWidth": 40,
     "map.width": 48,
     "openFiles": [
+        "terrain.tsx",
+        "object.tsx",
+        "stage1.tmx"
     ],
     "project": "toposun.tiled-project",
     "recentFiles": [
         "terrain.tsx",
+        "object.tsx",
         "stage1.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
