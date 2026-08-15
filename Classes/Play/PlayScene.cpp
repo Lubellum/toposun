@@ -193,7 +193,7 @@ CPlayScene::tKeyboardEvent CPlayScene::CreateKeyPressedEvent(
         {
             position.y = visibleOrigin.y;
         }
-        // 左
+        // プレイヤー(左側の頂点)が左端を超えているかどうか
         if (position.x < visibleOrigin.x)
         {
             int dt = abs(position.x - visibleOrigin.x);
@@ -205,8 +205,8 @@ CPlayScene::tKeyboardEvent CPlayScene::CreateKeyPressedEvent(
                 positionDummy = playerDummyLocator->getPosition();
             }
         }
-        // 右
-        if (position.x + player->getContentSize().width > visibleSize.width)
+        // プレイヤー(右側の頂点)が右端を超えているかどうか
+        else if (position.x + player->getContentSize().width > visibleSize.width)
         {
             int dt = abs( (position.x + player->getContentSize().width) - visibleSize.width);
             positionDummy.y = position.y;
@@ -216,6 +216,10 @@ CPlayScene::tKeyboardEvent CPlayScene::CreateKeyPressedEvent(
                 position.x = positionDummy.x;
                 positionDummy = playerDummyLocator->getPosition();
             }
+        }
+        else
+        {
+            positionDummy = playerDummyLocator->getPosition();
         }
 
         player->setPosition(position);
