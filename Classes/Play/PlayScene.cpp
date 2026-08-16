@@ -77,11 +77,14 @@ void CPlayScene::Initilize(const std::string& aParameter)
     this->addChild(root);
     SetupUI(root);
 
-    auto map = cocos2d::TMXTiledMap::create("map/stage1.tmx");
-    //this->addChild(map);
-    auto stage = dynamic_cast<cocos2d::ui::Layout*>(
+    auto mapStage = cocos2d::TMXTiledMap::create("map/stage1.tmx");
+    auto panelStage = dynamic_cast<cocos2d::ui::Layout*>(
         root->getChildByName("panel_stage"));
-    stage->addChild(map);
+    panelStage->addChild(mapStage);
+    auto mapLogic = cocos2d::TMXTiledMap::create("map/stage1_logic.tmx");
+    auto panelLogic = dynamic_cast<cocos2d::ui::Layout*>(
+        root->getChildByName("panel_logic"));
+    panelLogic->addChild(mapLogic);
     auto listener = EventListenerKeyboard::create();
     listener->onKeyPressed = CreateKeyPressedEvent(root);
 
@@ -167,16 +170,16 @@ CPlayScene::tKeyboardEvent CPlayScene::CreateKeyPressedEvent(
         switch (aKeyCode)
         {
         case cocos2d::EventKeyboard::KeyCode::KEY_W: // 上
-            position.y += 50;
+            position.y += 40;
             break;
         case cocos2d::EventKeyboard::KeyCode::KEY_S: // 下
-            position.y -= 50;
+            position.y -= 40;
             break;
         case cocos2d::EventKeyboard::KeyCode::KEY_A: // 左
-            position.x -= 50;
+            position.x -= 40;
             break;
         case cocos2d::EventKeyboard::KeyCode::KEY_D: // 右
-            position.x += 50;
+            position.x += 40;
             break;
         default:
             break;
