@@ -141,10 +141,7 @@ void CPlayScene::SetupPlayer(cocos2d::ui::Widget* aRoot)
                 if (value == 1)
                 {
                     // Playerの初期位置座標を取得
-                    playerPosition = cocos2d::Vec2(
-                        tileSize.width * x,
-                        tileSize.height * ((mapSize.height - y) - 1)
-                    );
+                    playerPosition = TileToWorld(mapLogic,cocos2d::Vec2(x, y));
                     break;
                 }
             }
@@ -152,6 +149,20 @@ void CPlayScene::SetupPlayer(cocos2d::ui::Widget* aRoot)
     }
 
     player->setPosition(playerPosition);
+}
+
+// ------------------------------------------------------------------------- //
+// TiledMap座標からWorld座標への変換
+// ------------------------------------------------------------------------- //
+cocos2d::Vec2 CPlayScene::TileToWorld(cocos2d::TMXTiledMap* aTiledMap, cocos2d::Vec2 aCellPos)
+{
+    auto mapSize = aTiledMap->getMapSize();
+    auto tileSize = aTiledMap->getTileSize();
+
+    return cocos2d::Vec2(
+        tileSize.width * aCellPos.x,
+        tileSize.height * ((mapSize.height - aCellPos.y) - 1)
+    );
 }
 
 // ------------------------------------------------------------------------- //

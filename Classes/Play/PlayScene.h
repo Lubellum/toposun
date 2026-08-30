@@ -31,6 +31,7 @@ public:
     tClickEvent CreatePauseEvent();
 
 private:
+    cocos2d::Vec2 TileToWorld(cocos2d::TMXTiledMap* aTiledMap, cocos2d::Vec2 aCellPos);
     std::string mParameter;
 };
 
