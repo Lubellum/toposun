@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="48" height="27" tilewidth="40" tileheight="40" infinite="0" nextlayerid="2" nextobjectid="1">
  <tileset firstgid="1" source="terrain.tsx"/>
- <layer id="1" name="タイルレイヤー1" width="48" height="27">
+ <layer id="1" name="Layer1" width="48" height="27">
   <data encoding="base64" compression="zlib">
    eJztzrEJADAMAzDng/5/bZ4oBIMG7ZokU+6V8vf3v3/4d/L3979/+Hfy9/e/f/h38vf/8W+2UmZIcw==
   </data>
