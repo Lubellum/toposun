@@ -1,5 +1,5 @@
 {
-    "activeFile": "",
+    "activeFile": "stage1_logic.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -16,16 +16,16 @@
             "scale": 1.2716145833333334,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 959.8033995494573,
-                "y": 539.8648371902518
+                "x": 457.2926479623182,
+                "y": 263.4446037272168
             }
         },
         "stage1_logic.tmx": {
-            "scale": 1.2716145833333334,
+            "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 959.8033995494573,
-                "y": 539.8648371902518
+                "x": 923,
+                "y": 252
             }
         },
         "terrain.tsx": {
@@ -41,17 +41,18 @@
     "map.tileWidth": 40,
     "map.width": 48,
     "openFiles": [
-        "terrain.tsx",
-        "object.tsx",
-        "stage1.tmx"
+        "stage1.tmx",
+        "stage1_logic.tmx",
+        "logic.tsx"
     ],
     "project": "toposun.tiled-project",
     "property.type": "int",
     "recentFiles": [
-        "terrain.tsx",
-        "object.tsx",
+        "stage1.tmx",
         "logic.tsx",
-        "stage1.tmx"
+        "stage1_logic.tmx",
+        "terrain.tsx",
+        "object.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
