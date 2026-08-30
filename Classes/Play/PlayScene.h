@@ -25,6 +25,7 @@ public:
     virtual void update(float delta) override;
     void Initilize(const std::string& aParameter);
     void SetupUI(cocos2d::ui::Widget* aRoot);
+    void SetupPlayer(cocos2d::ui::Widget* aRoot);
     tKeyboardEvent CreateKeyPressedEvent(cocos2d::ui::Widget* aRoot);
     tClickEvent CreateDecisionEvent();
     tClickEvent CreatePauseEvent();

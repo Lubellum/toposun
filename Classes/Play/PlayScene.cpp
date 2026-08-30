@@ -82,9 +82,11 @@ void CPlayScene::Initilize(const std::string& aParameter)
         root->getChildByName("panel_stage"));
     panelStage->addChild(mapStage);
     auto mapLogic = cocos2d::TMXTiledMap::create("map/stage1_logic.tmx");
+    mapLogic->setName("stage1_logic");
     auto panelLogic = dynamic_cast<cocos2d::ui::Layout*>(
         root->getChildByName("panel_logic"));
     panelLogic->addChild(mapLogic);
+    SetupPlayer(root);
     auto listener = EventListenerKeyboard::create();
     listener->onKeyPressed = CreateKeyPressedEvent(root);
 
@@ -103,10 +105,53 @@ void CPlayScene::SetupUI(cocos2d::ui::Widget* aRoot)
     auto button = dynamic_cast<cocos2d::ui::Layout*>(
         aRoot->getChildByName("panel_pause"));
     button->addClickEventListener(CreatePauseEvent());
+}
 
+// ------------------------------------------------------------------------- //
+// Player設定
+// ------------------------------------------------------------------------- //
+void CPlayScene::SetupPlayer(cocos2d::ui::Widget* aRoot)
+{
     auto player = dynamic_cast<cocos2d::ui::Layout*>(
         aRoot->getChildByName("panel_player"));
-    player->setPosition(cocos2d::Vec2(1000, 400));
+    auto panelLogic = dynamic_cast<cocos2d::ui::Layout*>(
+        aRoot->getChildByName("panel_logic"));
+    auto mapLogic = dynamic_cast<cocos2d::TMXTiledMap*>(
+        panelLogic->getChildByName("stage1_logic"));
+    auto mapSize = mapLogic->getMapSize();
+    auto tileSize = mapLogic->getTileSize();
+    auto mapLayer = mapLogic->getLayer("Layer1");
+    auto playerPosition = cocos2d::Vec2(cocos2d::Vec2::ZERO);
+    for (size_t y = 0; y < mapSize.height; y++)
+    {
+        for (size_t x = 0; x < mapSize.width; x++)
+        {
+            auto gid = mapLayer->getTileGIDAt(cocos2d::Vec2(x, y));
+            if (gid == 0)
+            {
+                continue;
+            }
+            auto properties = mapLogic->getPropertiesForGID(gid);
+            auto propertiesDict = properties.asValueMap();
+            auto it = propertiesDict.find("type");
+            if (it != propertiesDict.end())
+            {
+                auto value = it->second.asInt();
+                // Playerの初期位置マスの種別判定
+                if (value == 1)
+                {
+                    // Playerの初期位置座標を取得
+                    playerPosition = cocos2d::Vec2(
+                        tileSize.width * x,
+                        tileSize.height * ((mapSize.height - y) - 1)
+                    );
+                    break;
+                }
+            }
+        }
+    }
+
+    player->setPosition(playerPosition);
 }
 
 // ------------------------------------------------------------------------- //
