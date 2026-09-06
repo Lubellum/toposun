@@ -167,6 +167,21 @@ cocos2d::Vec2 CPlayScene::TileToWorld(const cocos2d::TMXTiledMap* aTiledMap,
 }
 
 // ------------------------------------------------------------------------- //
+// World座標からTiledMap座標への変換
+// ------------------------------------------------------------------------- //
+cocos2d::Vec2 CPlayScene::WorldToTile(const cocos2d::TMXTiledMap* aTiledMap,
+    const cocos2d::Vec2 aWorldPos)
+{
+    const auto mapSize = aTiledMap->getMapSize();
+    const auto tileSize = aTiledMap->getTileSize();
+
+    return cocos2d::Vec2(
+        std::floor(aWorldPos.x / tileSize.width),
+        ( (mapSize.height - 1) - std::floor(aWorldPos.y / tileSize.height) )
+    );
+}
+
+// ------------------------------------------------------------------------- //
 // 決定イベント生成
 // ------------------------------------------------------------------------- //
 CPlayScene::tClickEvent CPlayScene::CreateDecisionEvent()

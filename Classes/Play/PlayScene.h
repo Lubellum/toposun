@@ -29,6 +29,7 @@ private:
     void SetupUI(const cocos2d::ui::Widget* aRoot);
     void SetupPlayer(const cocos2d::ui::Widget* aRoot);
     cocos2d::Vec2 TileToWorld(const cocos2d::TMXTiledMap* aTiledMap, const cocos2d::Vec2 aCellPos);
+    cocos2d::Vec2 WorldToTile(const cocos2d::TMXTiledMap* aTiledMap, const cocos2d::Vec2 aWorldPos);
     tKeyboardEvent CreateKeyPressedEvent(const cocos2d::ui::Widget* aRoot);
     tClickEvent CreateDecisionEvent();
     tClickEvent CreatePauseEvent();
