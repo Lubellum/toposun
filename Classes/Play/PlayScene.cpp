@@ -72,22 +72,22 @@ void CPlayScene::update(float delta)
 void CPlayScene::Initilize(const std::string& aParameter)
 {
     mParameter = aParameter;
-    auto guiReader = cocostudio::GUIReader::getInstance();
-    auto root = guiReader->widgetFromJsonFile("json/play.json");
+    auto* guiReader = cocostudio::GUIReader::getInstance();
+    auto* root = guiReader->widgetFromJsonFile("json/play.json");
     this->addChild(root);
     SetupUI(root);
 
-    auto mapStage = cocos2d::TMXTiledMap::create("map/stage1.tmx");
-    auto panelStage = dynamic_cast<cocos2d::ui::Layout*>(
+    auto* mapStage = cocos2d::TMXTiledMap::create("map/stage1.tmx");
+    auto* panelStage = dynamic_cast<cocos2d::ui::Layout*>(
         root->getChildByName("panel_stage"));
     panelStage->addChild(mapStage);
-    auto mapLogic = cocos2d::TMXTiledMap::create("map/stage1_logic.tmx");
+    auto* mapLogic = cocos2d::TMXTiledMap::create("map/stage1_logic.tmx");
     mapLogic->setName("stage1_logic");
-    auto panelLogic = dynamic_cast<cocos2d::ui::Layout*>(
+    auto* panelLogic = dynamic_cast<cocos2d::ui::Layout*>(
         root->getChildByName("panel_logic"));
     panelLogic->addChild(mapLogic);
     SetupPlayer(root);
-    auto listener = EventListenerKeyboard::create();
+    auto* listener = EventListenerKeyboard::create();
     listener->onKeyPressed = CreateKeyPressedEvent(root);
 
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
@@ -96,13 +96,13 @@ void CPlayScene::Initilize(const std::string& aParameter)
 // ------------------------------------------------------------------------- //
 // UI設定
 // ------------------------------------------------------------------------- //
-void CPlayScene::SetupUI(cocos2d::ui::Widget* aRoot)
+void CPlayScene::SetupUI(const cocos2d::ui::Widget* aRoot)
 {
-    auto image = dynamic_cast<cocos2d::ui::ImageView*>(
+    auto* image = dynamic_cast<cocos2d::ui::ImageView*>(
         aRoot->getChildByName("image_bg"));
     image->addClickEventListener(CreateDecisionEvent());
 
-    auto button = dynamic_cast<cocos2d::ui::Layout*>(
+    auto* button = dynamic_cast<cocos2d::ui::Layout*>(
         aRoot->getChildByName("panel_pause"));
     button->addClickEventListener(CreatePauseEvent());
 }
@@ -110,17 +110,17 @@ void CPlayScene::SetupUI(cocos2d::ui::Widget* aRoot)
 // ------------------------------------------------------------------------- //
 // Player設定
 // ------------------------------------------------------------------------- //
-void CPlayScene::SetupPlayer(cocos2d::ui::Widget* aRoot)
+void CPlayScene::SetupPlayer(const cocos2d::ui::Widget* aRoot)
 {
-    auto player = dynamic_cast<cocos2d::ui::Layout*>(
+    auto* player = dynamic_cast<cocos2d::ui::Layout*>(
         aRoot->getChildByName("panel_player"));
-    auto panelLogic = dynamic_cast<cocos2d::ui::Layout*>(
+    const auto* panelLogic = dynamic_cast<cocos2d::ui::Layout*>(
         aRoot->getChildByName("panel_logic"));
-    auto mapLogic = dynamic_cast<cocos2d::TMXTiledMap*>(
+    const auto* mapLogic = dynamic_cast<cocos2d::TMXTiledMap*>(
         panelLogic->getChildByName("stage1_logic"));
-    auto mapSize = mapLogic->getMapSize();
-    auto tileSize = mapLogic->getTileSize();
-    auto mapLayer = mapLogic->getLayer("Layer1");
+    const auto mapSize = mapLogic->getMapSize();
+    const auto tileSize = mapLogic->getTileSize();
+    auto* mapLayer = mapLogic->getLayer("Layer1");
     auto playerPosition = cocos2d::Vec2(cocos2d::Vec2::ZERO);
     for (size_t y = 0; y < mapSize.height; y++)
     {
@@ -131,12 +131,12 @@ void CPlayScene::SetupPlayer(cocos2d::ui::Widget* aRoot)
             {
                 continue;
             }
-            auto properties = mapLogic->getPropertiesForGID(gid);
-            auto propertiesDict = properties.asValueMap();
-            auto it = propertiesDict.find("type");
+            const auto properties = mapLogic->getPropertiesForGID(gid);
+            const auto propertiesDict = properties.asValueMap();
+            const auto it = propertiesDict.find("type");
             if (it != propertiesDict.end())
             {
-                auto value = it->second.asInt();
+                const auto value = it->second.asInt();
                 // Playerの初期位置マスの種別判定
                 if (value == 1)
                 {
@@ -154,10 +154,11 @@ void CPlayScene::SetupPlayer(cocos2d::ui::Widget* aRoot)
 // ------------------------------------------------------------------------- //
 // TiledMap座標からWorld座標への変換
 // ------------------------------------------------------------------------- //
-cocos2d::Vec2 CPlayScene::TileToWorld(cocos2d::TMXTiledMap* aTiledMap, cocos2d::Vec2 aCellPos)
+cocos2d::Vec2 CPlayScene::TileToWorld(const cocos2d::TMXTiledMap* aTiledMap,
+    const cocos2d::Vec2 aCellPos)
 {
-    auto mapSize = aTiledMap->getMapSize();
-    auto tileSize = aTiledMap->getTileSize();
+    const auto mapSize = aTiledMap->getMapSize();
+    const auto tileSize = aTiledMap->getTileSize();
 
     return cocos2d::Vec2(
         tileSize.width * aCellPos.x,
@@ -173,9 +174,9 @@ CPlayScene::tClickEvent CPlayScene::CreateDecisionEvent()
     return [this](cocos2d::Ref*)
         {
             cocos2d::log(mParameter.c_str());
-            auto director = Director::getInstance();
-            auto scene = CPlayResultScene::CreateScene("eeeeeeeee");
-            auto transition = TransitionFade::create(0.5, scene);
+            auto* director = Director::getInstance();
+            auto* scene = CPlayResultScene::CreateScene("eeeeeeeee");
+            auto* transition = TransitionFade::create(0.5, scene);
             director->replaceScene(transition);
         };
 }
@@ -188,8 +189,7 @@ CPlayScene::tClickEvent CPlayScene::CreatePauseEvent()
     return [this](cocos2d::Ref*)
         {
             cocos2d::log(mParameter.c_str());
-            auto director = Director::getInstance();
-            auto scene = CPlayPauseScene::CreateScene("eeeeeeeee");
+            auto* scene = CPlayPauseScene::CreateScene("eeeeeeeee");
             this->addChild(scene);
         };
 }
@@ -198,21 +198,21 @@ CPlayScene::tClickEvent CPlayScene::CreatePauseEvent()
 // 《キーボード》押下イベント生成
 // ------------------------------------------------------------------------- //
 CPlayScene::tKeyboardEvent CPlayScene::CreateKeyPressedEvent(
-    cocos2d::ui::Widget* aRoot)
+    const cocos2d::ui::Widget* aRoot)
 {
     // 画面のサイズ取得
-    auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
+    const auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
 
     // 原点位置取得
-    auto visibleOrigin = cocos2d::Director::getInstance()->getVisibleOrigin();
+    const auto visibleOrigin = cocos2d::Director::getInstance()->getVisibleOrigin();
 
-    auto player = dynamic_cast<cocos2d::ui::Layout*>(
+    auto* player = dynamic_cast<cocos2d::ui::Layout*>(
         aRoot->getChildByName("panel_player"));
 
-    auto playerDummy = dynamic_cast<cocos2d::ui::Layout*>(
+    auto* playerDummy = dynamic_cast<cocos2d::ui::Layout*>(
         aRoot->getChildByName("panel_player_dummy"));
 
-    auto playerDummyLocator = dynamic_cast<cocos2d::ui::Layout*>(
+    const auto* playerDummyLocator = dynamic_cast<cocos2d::ui::Layout*>(
         aRoot->getChildByName("panel_player_dummy_locator"));
 
     // プレイヤーの移動・補正処理
@@ -220,8 +220,8 @@ CPlayScene::tKeyboardEvent CPlayScene::CreateKeyPressedEvent(
         cocos2d::EventKeyboard::KeyCode aKeyCode, cocos2d::Event* aEvent)
     {
         // 移動処理
-        Vec2 position = player->getPosition();
-        Vec2 positionDummy = playerDummy->getPosition();
+        auto position = player->getPosition();
+        auto positionDummy = playerDummy->getPosition();
 
         switch (aKeyCode)
         {
@@ -255,7 +255,7 @@ CPlayScene::tKeyboardEvent CPlayScene::CreateKeyPressedEvent(
         // プレイヤー(左側の頂点)が左端を超えているかどうか
         if (position.x < visibleOrigin.x)
         {
-            int dt = abs(position.x - visibleOrigin.x);
+            const int dt = abs(position.x - visibleOrigin.x);
             positionDummy.y = position.y;
             positionDummy.x = visibleSize.width - dt;
             if ( (position.x + player->getContentSize().width) < visibleOrigin.x)
@@ -267,7 +267,7 @@ CPlayScene::tKeyboardEvent CPlayScene::CreateKeyPressedEvent(
         // プレイヤー(右側の頂点)が右端を超えているかどうか
         else if (position.x + player->getContentSize().width > visibleSize.width)
         {
-            int dt = abs( (position.x + player->getContentSize().width) - visibleSize.width);
+            const int dt = abs( (position.x + player->getContentSize().width) - visibleSize.width);
             positionDummy.y = position.y;
             positionDummy.x = visibleOrigin.x - playerDummy->getContentSize().width + dt;
             if ( position.x > visibleSize.width )

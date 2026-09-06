@@ -23,15 +23,16 @@ public:
 
     virtual bool init() override;
     virtual void update(float delta) override;
+
+private:
     void Initilize(const std::string& aParameter);
-    void SetupUI(cocos2d::ui::Widget* aRoot);
-    void SetupPlayer(cocos2d::ui::Widget* aRoot);
-    tKeyboardEvent CreateKeyPressedEvent(cocos2d::ui::Widget* aRoot);
+    void SetupUI(const cocos2d::ui::Widget* aRoot);
+    void SetupPlayer(const cocos2d::ui::Widget* aRoot);
+    cocos2d::Vec2 TileToWorld(const cocos2d::TMXTiledMap* aTiledMap, const cocos2d::Vec2 aCellPos);
+    tKeyboardEvent CreateKeyPressedEvent(const cocos2d::ui::Widget* aRoot);
     tClickEvent CreateDecisionEvent();
     tClickEvent CreatePauseEvent();
 
-private:
-    cocos2d::Vec2 TileToWorld(cocos2d::TMXTiledMap* aTiledMap, cocos2d::Vec2 aCellPos);
     std::string mParameter;
 };
 
