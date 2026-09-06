@@ -3,7 +3,7 @@
  <tileset firstgid="1" source="logic.tsx"/>
  <layer id="1" name="Layer1" width="48" height="27">
   <data encoding="base64" compression="zlib">
-   eJztzgEJAAAMA6C9f+nHGAxNYAIAAJuuHQAAGPAdlAAC
+   eJzt0MEJADAMw0A3+w/dJUqFgwT+hiOTZMrXmn42/Wz62fSz6WfTz/bbfx7f8/9s+tn0s+ln08+2xd+8C60BASY=
   </data>
  </layer>
 </map>
