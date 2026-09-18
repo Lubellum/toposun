@@ -131,7 +131,7 @@ void CPlayScene::SetupPlayer(const cocos2d::ui::Widget* aRoot)
             {
                 continue;
             }
-            const auto properties = mapLogic->getPropertiesForGID(gid);
+            const auto properties = mapLogic->getPropertiesForGID(gid); // タイルセット種の情報
             const auto propertiesDict = properties.asValueMap();
             const auto it = propertiesDict.find("type");
             if (it != propertiesDict.end())
@@ -231,30 +231,57 @@ CPlayScene::tKeyboardEvent CPlayScene::CreateKeyPressedEvent(
         aRoot->getChildByName("panel_player_dummy_locator"));
 
     // プレイヤーの移動・補正処理
-    return[this, player, playerDummy, playerDummyLocator, visibleSize, visibleOrigin](
+    return[this, player, playerDummy, playerDummyLocator, visibleSize, visibleOrigin, aRoot](
         cocos2d::EventKeyboard::KeyCode aKeyCode, cocos2d::Event* aEvent)
     {
         // 移動処理
         auto position = player->getPosition();
         auto positionDummy = playerDummy->getPosition();
+        auto movePosition = cocos2d::Vec2::ZERO;
 
         switch (aKeyCode)
         {
         case cocos2d::EventKeyboard::KeyCode::KEY_W: // 上
-            position.y += 40;
+            movePosition.y = 40;
             break;
         case cocos2d::EventKeyboard::KeyCode::KEY_S: // 下
-            position.y -= 40;
+            movePosition.y = -40;
             break;
         case cocos2d::EventKeyboard::KeyCode::KEY_A: // 左
-            position.x -= 40;
+            movePosition.x = -40;
             break;
         case cocos2d::EventKeyboard::KeyCode::KEY_D: // 右
-            position.x += 40;
+            movePosition.x = 40;
             break;
         default:
             break;
         }
+
+        const auto* panelLogic = dynamic_cast<cocos2d::ui::Layout*>(
+            aRoot->getChildByName("panel_logic"));
+        const auto* mapLogic = dynamic_cast<cocos2d::TMXTiledMap*>(
+            panelLogic->getChildByName("stage1_logic"));
+        auto* mapLayer = mapLogic->getLayer("Layer1");
+
+        auto gid = mapLayer->getTileGIDAt(WorldToTile(mapLogic, (position + movePosition)));
+        if (gid != 0)
+        {
+            const auto properties = mapLogic->getPropertiesForGID(gid);
+            const auto propertiesDict = properties.asValueMap();
+            const auto it = propertiesDict.find("type");
+            if (it != propertiesDict.end())
+            {
+                const auto value = it->second.asInt();
+                // 壁の初期位置マスの種別判定
+                if (value == 2)
+                {
+                    // Playerの初期位置座標を取得
+                    movePosition = cocos2d::Vec2::ZERO;
+                }
+            }
+        }
+
+        position += movePosition;
 
         // 補正処理
         // 上

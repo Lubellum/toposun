@@ -2,6 +2,7 @@
 #define PLAYSCENE_H
 
 #include "cocos2d.h"
+#include "PlayField.h"
 
 // ========================================================================= //
 // プレイ画面
@@ -35,6 +36,7 @@ private:
     tClickEvent CreatePauseEvent();
 
     std::string mParameter;
+    CPlayField mPlayField;
 };
 
 #endif // PLAYSCENE_H
