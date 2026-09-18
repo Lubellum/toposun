@@ -35,6 +35,7 @@ Scene* CPlayScene::CreateScene(const std::string& aParameter)
 // コンストラクタ
 // ------------------------------------------------------------------------- //
 CPlayScene::CPlayScene()
+    : mParameter()
 {
 }
 
