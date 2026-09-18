@@ -36,6 +36,7 @@ Scene* CPlayScene::CreateScene(const std::string& aParameter)
 // ------------------------------------------------------------------------- //
 CPlayScene::CPlayScene()
     : mParameter()
+    , mPlayField()
 {
 }
 
@@ -78,15 +79,8 @@ void CPlayScene::Initilize(const std::string& aParameter)
     this->addChild(root);
     SetupUI(root);
 
-    auto* mapStage = cocos2d::TMXTiledMap::create("map/stage1.tmx");
-    auto* panelStage = dynamic_cast<cocos2d::ui::Layout*>(
-        root->getChildByName("panel_stage"));
-    panelStage->addChild(mapStage);
-    auto* mapLogic = cocos2d::TMXTiledMap::create("map/stage1_logic.tmx");
-    mapLogic->setName("stage1_logic");
-    auto* panelLogic = dynamic_cast<cocos2d::ui::Layout*>(
-        root->getChildByName("panel_logic"));
-    panelLogic->addChild(mapLogic);
+    mPlayField.Initilize(aParameter, root);
+
     SetupPlayer(root);
     auto* listener = EventListenerKeyboard::create();
     listener->onKeyPressed = CreateKeyPressedEvent(root);
