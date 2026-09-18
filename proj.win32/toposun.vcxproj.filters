@@ -46,6 +46,9 @@
       <Filter>src\Play</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="..\Classes\Play\PlayField.cpp">
+      <Filter>src\Play</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -76,6 +79,9 @@
       <Filter>src\Play</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="..\Classes\Play\PlayField.h">
+      <Filter>src\Play</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
