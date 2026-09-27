@@ -34,6 +34,14 @@ private:
     tKeyboardEvent CreateKeyPressedEvent(const cocos2d::ui::Widget* aRoot);
     tClickEvent CreateDecisionEvent();
     tClickEvent CreatePauseEvent();
+    void MovePlayer(cocos2d::ui::Layout* aPlayer,
+        cocos2d::ui::Layout* aPlayerDummy,
+        const cocos2d::EventKeyboard::KeyCode aKeyCode,
+        const cocos2d::ui::Widget* aRoot,
+        const cocos2d::Size aVisibleSize,
+        const cocos2d::Vec2 aVisibleOrigin,
+        const cocos2d::ui::Layout* aPlayerDummyLocator
+        );
 
     std::string mParameter;
     CPlayField mPlayField;
