@@ -311,7 +311,7 @@
         "options": {
           "__type": "ComGUIPanelSurrogate:#EditorCommon.JsonModel.Component.GUI",
           "classname": "Panel",
-          "name": "panel_player",
+          "name": "panel_hero",
           "ZOrder": 0,
           "actiontag": 130,
           "anchorPointX": 0,
@@ -373,7 +373,7 @@
         "options": {
           "__type": "ComGUIPanelSurrogate:#EditorCommon.JsonModel.Component.GUI",
           "classname": "Panel",
-          "name": "panel_player_dummy",
+          "name": "panel_hero_dummy",
           "ZOrder": 0,
           "actiontag": 166,
           "anchorPointX": 0,
@@ -435,7 +435,7 @@
         "options": {
           "__type": "ComGUIPanelSurrogate:#EditorCommon.JsonModel.Component.GUI",
           "classname": "Panel",
-          "name": "panel_player_dummy_locator",
+          "name": "panel_hero_dummy_locator",
           "ZOrder": 0,
           "actiontag": 167,
           "anchorPointX": 0,

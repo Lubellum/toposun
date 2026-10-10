@@ -69,7 +69,7 @@ cocos2d::Vec2 CPlayHero::WorldToTile(const cocos2d::TMXTiledMap* aTiledMap,
 void CPlayHero::SetupHero(const cocos2d::ui::Widget* aRoot)
 {
     auto* hero = dynamic_cast<cocos2d::ui::Layout*>(
-        aRoot->getChildByName("panel_player")); // todo: 名前修正 
+        aRoot->getChildByName("panel_hero"));
     const auto* panelLogic = dynamic_cast<cocos2d::ui::Layout*>(
         aRoot->getChildByName("panel_logic"));
     const auto* mapLogic = dynamic_cast<cocos2d::TMXTiledMap*>(
