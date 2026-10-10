@@ -17,14 +17,14 @@ public:
         const cocos2d::Vec2 aCellPos);
     cocos2d::Vec2 CPlayHero::WorldToTile(const cocos2d::TMXTiledMap* aTiledMap,
         const cocos2d::Vec2 aWorldPos);
-    void SetupPlayer(const cocos2d::ui::Widget* aRoot);
-    void MovePlayer(cocos2d::ui::Layout* aPlayer,
-        cocos2d::ui::Layout* aPlayerDummy,
+    void SetupHero(const cocos2d::ui::Widget* aRoot);
+    void MoveHero(cocos2d::ui::Layout* aHero,
+        cocos2d::ui::Layout* aHeroDummy,
         const cocos2d::EventKeyboard::KeyCode aKeyCode,
         const cocos2d::ui::Widget* aRoot,
         const cocos2d::Size aVisibleSize,
         const cocos2d::Vec2 aVisibleOrigin,
-        const cocos2d::ui::Layout* aPlayerDummyLocator
+        const cocos2d::ui::Layout* aHeroDummyLocator
     );
 };
 

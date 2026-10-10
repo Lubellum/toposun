@@ -81,7 +81,7 @@ void CPlayScene::Initilize(const std::string& aParameter)
 
     mPlayField.Initilize(aParameter, root);
 
-    mPlayHero.SetupPlayer(root);
+    mPlayHero.SetupHero(root);
     auto* listener = EventListenerKeyboard::create();
     listener->onKeyPressed = CreateKeyPressedEvent(root);
 
@@ -185,7 +185,7 @@ CPlayScene::tKeyboardEvent CPlayScene::CreateKeyPressedEvent(
     return[this, player, playerDummy, playerDummyLocator, visibleSize, visibleOrigin, aRoot](
         cocos2d::EventKeyboard::KeyCode aKeyCode, cocos2d::Event* aEvent)
     {
-            mPlayHero.MovePlayer(player, playerDummy, aKeyCode, aRoot, visibleSize, visibleOrigin, playerDummyLocator);
+            mPlayHero.MoveHero(player, playerDummy, aKeyCode, aRoot, visibleSize, visibleOrigin, playerDummyLocator);
             return true;
     };
 }
