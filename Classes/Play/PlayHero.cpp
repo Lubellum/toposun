@@ -41,41 +41,7 @@ void CPlayHero::SetupHero(const cocos2d::ui::Widget* aRoot)
 {
     auto* hero = dynamic_cast<cocos2d::ui::Layout*>(
         aRoot->getChildByName("panel_hero"));
-    const auto* panelLogic = dynamic_cast<cocos2d::ui::Layout*>(
-        aRoot->getChildByName("panel_logic"));
-    const auto* mapLogic = dynamic_cast<cocos2d::TMXTiledMap*>(
-        panelLogic->getChildByName("stage1_logic"));
-    const auto mapSize = mapLogic->getMapSize();
-    const auto tileSize = mapLogic->getTileSize();
-    auto* mapLayer = mapLogic->getLayer("Layer1");
-    auto heroPosition = cocos2d::Vec2(cocos2d::Vec2::ZERO);
-    for (size_t y = 0; y < mapSize.height; y++)
-    {
-        for (size_t x = 0; x < mapSize.width; x++)
-        {
-            auto gid = mapLayer->getTileGIDAt(cocos2d::Vec2(x, y));
-            if (gid == 0)
-            {
-                continue;
-            }
-            const auto properties = mapLogic->getPropertiesForGID(gid); // タイルセット種の情報
-            const auto propertiesDict = properties.asValueMap();
-            const auto it = propertiesDict.find("type");
-            if (it != propertiesDict.end())
-            {
-                const auto value = it->second.asInt();
-                // Heroの初期位置マスの種別判定
-                if (value == 1)
-                {
-                    // Heroの初期位置座標を取得
-                    heroPosition = CPlayField::TileToWorld(mapLogic, cocos2d::Vec2(x, y));
-                    break;
-                }
-            }
-        }
-    }
-
-    hero->setPosition(heroPosition);
+    hero->setPosition(CPlayField::GetSpawnPosition(aRoot));
 }
 
 void CPlayHero::MoveHero(cocos2d::ui::Layout* aHero,
