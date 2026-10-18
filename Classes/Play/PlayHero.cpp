@@ -44,6 +44,9 @@ void CPlayHero::SetupHero(const cocos2d::ui::Widget* aRoot)
     hero->setPosition(CPlayField::GetSpawnPosition(aRoot));
 }
 
+// ------------------------------------------------------------------------- //
+// 移動処理
+// ------------------------------------------------------------------------- //
 void CPlayHero::MoveHero(cocos2d::ui::Layout* aHero,
     cocos2d::ui::Layout* aHeroDummy,
     const cocos2d::EventKeyboard::KeyCode aKeyCode,
