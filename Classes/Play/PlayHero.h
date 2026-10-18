@@ -13,10 +13,7 @@ public:
     virtual ~CPlayHero();
 
     void Initilize();
-    cocos2d::Vec2 CPlayHero::TileToWorld(const cocos2d::TMXTiledMap* aTiledMap,
-        const cocos2d::Vec2 aCellPos);
-    cocos2d::Vec2 CPlayHero::WorldToTile(const cocos2d::TMXTiledMap* aTiledMap,
-        const cocos2d::Vec2 aWorldPos);
+
     void SetupHero(const cocos2d::ui::Widget* aRoot);
     void MoveHero(cocos2d::ui::Layout* aHero,
         cocos2d::ui::Layout* aHeroDummy,

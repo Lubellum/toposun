@@ -1,5 +1,6 @@
 ﻿#include "stdafx.h"
 #include "PlayHero.h"
+#include "PlayField.h"
 #include "SimpleAudioEngine.h"
 #include "ui/UIImageView.h"
 #include "cocostudio/CocoStudio.h"
@@ -31,36 +32,6 @@ CPlayHero::~CPlayHero()
 void CPlayHero::Initilize()
 {
 
-}
-
-// ------------------------------------------------------------------------- //
-// TiledMap座標からWorld座標への変換
-// ------------------------------------------------------------------------- //
-cocos2d::Vec2 CPlayHero::TileToWorld(const cocos2d::TMXTiledMap* aTiledMap,
-    const cocos2d::Vec2 aCellPos)
-{
-    const auto mapSize = aTiledMap->getMapSize();
-    const auto tileSize = aTiledMap->getTileSize();
-
-    return cocos2d::Vec2(
-        tileSize.width * aCellPos.x,
-        tileSize.height * ((mapSize.height - aCellPos.y) - 1)
-    );
-}
-
-// ------------------------------------------------------------------------- //
-// World座標からTiledMap座標への変換
-// ------------------------------------------------------------------------- //
-cocos2d::Vec2 CPlayHero::WorldToTile(const cocos2d::TMXTiledMap* aTiledMap,
-    const cocos2d::Vec2 aWorldPos)
-{
-    const auto mapSize = aTiledMap->getMapSize();
-    const auto tileSize = aTiledMap->getTileSize();
-
-    return cocos2d::Vec2(
-        std::floor(aWorldPos.x / tileSize.width),
-        ((mapSize.height - 1) - std::floor(aWorldPos.y / tileSize.height))
-    );
 }
 
 // ------------------------------------------------------------------------- //
@@ -97,7 +68,7 @@ void CPlayHero::SetupHero(const cocos2d::ui::Widget* aRoot)
                 if (value == 1)
                 {
                     // Heroの初期位置座標を取得
-                    heroPosition = TileToWorld(mapLogic, cocos2d::Vec2(x, y));
+                    heroPosition = CPlayField::TileToWorld(mapLogic, cocos2d::Vec2(x, y));
                     break;
                 }
             }
@@ -145,7 +116,7 @@ void CPlayHero::MoveHero(cocos2d::ui::Layout* aHero,
         panelLogic->getChildByName("stage1_logic"));
     auto* mapLayer = mapLogic->getLayer("Layer1");
 
-    auto gid = mapLayer->getTileGIDAt(WorldToTile(mapLogic, (position + movePosition)));
+    auto gid = mapLayer->getTileGIDAt(CPlayField::WorldToTile(mapLogic, (position + movePosition)));
     if (gid != 0)
     {
         const auto properties = mapLogic->getPropertiesForGID(gid);

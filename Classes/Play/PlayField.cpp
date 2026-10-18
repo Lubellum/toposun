@@ -40,3 +40,33 @@ void CPlayField::Initilize(const std::string& aParameter, cocos2d::ui::Widget* a
         aRoot->getChildByName("panel_logic"));
     panelLogic->addChild(mapLogic);
 }
+
+// ------------------------------------------------------------------------- //
+// TiledMap座標からWorld座標への変換
+// ------------------------------------------------------------------------- //
+cocos2d::Vec2 CPlayField::TileToWorld(const cocos2d::TMXTiledMap* aTiledMap,
+    const cocos2d::Vec2 aCellPos)
+{
+    const auto mapSize = aTiledMap->getMapSize();
+    const auto tileSize = aTiledMap->getTileSize();
+
+    return cocos2d::Vec2(
+        tileSize.width * aCellPos.x,
+        tileSize.height * ((mapSize.height - aCellPos.y) - 1)
+    );
+}
+
+// ------------------------------------------------------------------------- //
+// World座標からTiledMap座標への変換
+// ------------------------------------------------------------------------- //
+cocos2d::Vec2 CPlayField::WorldToTile(const cocos2d::TMXTiledMap* aTiledMap,
+    const cocos2d::Vec2 aWorldPos)
+{
+    const auto mapSize = aTiledMap->getMapSize();
+    const auto tileSize = aTiledMap->getTileSize();
+
+    return cocos2d::Vec2(
+        std::floor(aWorldPos.x / tileSize.width),
+        ((mapSize.height - 1) - std::floor(aWorldPos.y / tileSize.height))
+    );
+}

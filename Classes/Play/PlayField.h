@@ -13,6 +13,11 @@ public:
     virtual ~CPlayField();
 
     void Initilize(const std::string& aParameter, cocos2d::ui::Widget* aRoot);
+    static cocos2d::Vec2 TileToWorld(const cocos2d::TMXTiledMap* aTiledMap,
+        const cocos2d::Vec2 aCellPos);
+    static cocos2d::Vec2 WorldToTile(const cocos2d::TMXTiledMap* aTiledMap,
+        const cocos2d::Vec2 aWorldPos);
+
 private:
 
     std::string mParameter;
