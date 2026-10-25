@@ -77,8 +77,6 @@ void CPlayResultScene::Initilize(const std::string& aParameter)
     auto guiReader = cocostudio::GUIReader::getInstance();
     auto root = guiReader->widgetFromJsonFile("json/playresult.json");
     this->addChild(root);
-    auto image = dynamic_cast<cocos2d::ui::ImageView*>(
-        root->getChildByName("image_bg"));
     
     auto textLevel = dynamic_cast<cocos2d::ui::Text*>(
         root->getChildByName("text_level"));
