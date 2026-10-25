@@ -112,3 +112,34 @@ cocos2d::Vec2 CPlayField::GetSpawnPosition(const cocos2d::ui::Widget* aRoot)
 
     return heroPosition;
 }
+
+// ------------------------------------------------------------------------- //
+// 壁の当たり判定
+// ------------------------------------------------------------------------- //
+bool IsHitWall(cocos2d::ui::Layout* aTarget, const cocos2d::ui::Widget* aRoot)
+{
+    auto position = aTarget->getPosition();
+
+    const auto* panelLogic = dynamic_cast<cocos2d::ui::Layout*>(
+        aRoot->getChildByName("panel_logic"));
+    const auto* mapLogic = dynamic_cast<cocos2d::TMXTiledMap*>(
+        panelLogic->getChildByName("stage1_logic"));
+    auto* mapLayer = mapLogic->getLayer("Layer1");
+
+    auto gid = mapLayer->getTileGIDAt(CPlayField::WorldToTile(mapLogic, position));
+    if (gid != 0)
+    {
+        const auto properties = mapLogic->getPropertiesForGID(gid);
+        const auto propertiesDict = properties.asValueMap();
+        const auto it = propertiesDict.find("type");
+        if (it != propertiesDict.end())
+        {
+            const auto value = it->second.asInt();
+            // 壁の初期位置マスの種別判定
+            if (value == 2)
+            {
+                return true;
+            }
+        }
+    }
+}
