@@ -116,7 +116,7 @@ cocos2d::Vec2 CPlayField::GetSpawnPosition(const cocos2d::ui::Widget* aRoot)
 // ------------------------------------------------------------------------- //
 // 壁の当たり判定
 // ------------------------------------------------------------------------- //
-bool IsHitWall(cocos2d::ui::Layout* aTarget, const cocos2d::ui::Widget* aRoot)
+bool CPlayField::IsHitWall(cocos2d::ui::Layout* aTarget, const cocos2d::ui::Widget* aRoot)
 {
     auto position = aTarget->getPosition();
 
@@ -142,4 +142,5 @@ bool IsHitWall(cocos2d::ui::Layout* aTarget, const cocos2d::ui::Widget* aRoot)
             }
         }
     }
+    return false;
 }

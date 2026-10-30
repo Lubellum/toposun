@@ -79,28 +79,9 @@ void CPlayHero::MoveHero(cocos2d::ui::Layout* aHero,
         break;
     }
 
-    const auto* panelLogic = dynamic_cast<cocos2d::ui::Layout*>(
-        aRoot->getChildByName("panel_logic"));
-    const auto* mapLogic = dynamic_cast<cocos2d::TMXTiledMap*>(
-        panelLogic->getChildByName("stage1_logic"));
-    auto* mapLayer = mapLogic->getLayer("Layer1");
-
-    auto gid = mapLayer->getTileGIDAt(CPlayField::WorldToTile(mapLogic, (position + movePosition)));
-    if (gid != 0)
+    if (CPlayField::IsHitWall(aHero, aRoot))
     {
-        const auto properties = mapLogic->getPropertiesForGID(gid);
-        const auto propertiesDict = properties.asValueMap();
-        const auto it = propertiesDict.find("type");
-        if (it != propertiesDict.end())
-        {
-            const auto value = it->second.asInt();
-            // 壁の初期位置マスの種別判定
-            if (value == 2)
-            {
-                // Heroの初期位置座標を取得
-                movePosition = cocos2d::Vec2::ZERO;
-            }
-        }
+        movePosition = cocos2d::Vec2::ZERO;
     }
 
     position += movePosition;
