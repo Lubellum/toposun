@@ -142,20 +142,14 @@ CPlayScene::tKeyboardEvent CPlayScene::CreateKeyPressedEvent(
     // 原点位置取得
     const auto visibleOrigin = cocos2d::Director::getInstance()->getVisibleOrigin();
 
-    auto* player = dynamic_cast<cocos2d::ui::Layout*>(
+    auto* hero = dynamic_cast<cocos2d::ui::Layout*>(
         aRoot->getChildByName("panel_hero"));
 
-    auto* playerDummy = dynamic_cast<cocos2d::ui::Layout*>(
-        aRoot->getChildByName("panel_hero_dummy"));
-
-    const auto* playerDummyLocator = dynamic_cast<cocos2d::ui::Layout*>(
-        aRoot->getChildByName("panel_hero_dummy_locator"));
-
     // プレイヤーの移動・補正処理
-    return[this, player, playerDummy, playerDummyLocator, visibleSize, visibleOrigin, aRoot](
+    return[this, hero, visibleSize, visibleOrigin, aRoot](
         cocos2d::EventKeyboard::KeyCode aKeyCode, cocos2d::Event* aEvent)
     {
-            mPlayHero.MoveHero(player, playerDummy, aKeyCode, aRoot, visibleSize, visibleOrigin, playerDummyLocator);
+            mPlayHero.MoveHero(hero, aKeyCode, aRoot, visibleSize, visibleOrigin);
             return true;
     };
 }
