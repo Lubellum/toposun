@@ -18,7 +18,7 @@ public:
     static cocos2d::Vec2 WorldToTile(const cocos2d::TMXTiledMap* aTiledMap,
         const cocos2d::Vec2 aWorldPos);
     static cocos2d::Vec2 GetSpawnPosition(const cocos2d::ui::Widget* aRoot);
-    static bool IsHitWall(cocos2d::ui::Layout* aTarget,
+    static bool IsHitWall(cocos2d::Vec2 aTarget,
         const cocos2d::ui::Widget* aRoot);
 
 

@@ -24,8 +24,8 @@
             "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 923,
-                "y": 251
+                "x": 960,
+                "y": 539
             }
         },
         "terrain.tsx": {

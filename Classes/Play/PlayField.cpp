@@ -116,17 +116,15 @@ cocos2d::Vec2 CPlayField::GetSpawnPosition(const cocos2d::ui::Widget* aRoot)
 // ------------------------------------------------------------------------- //
 // 壁の当たり判定
 // ------------------------------------------------------------------------- //
-bool CPlayField::IsHitWall(cocos2d::ui::Layout* aTarget, const cocos2d::ui::Widget* aRoot)
+bool CPlayField::IsHitWall(cocos2d::Vec2 aPosition, const cocos2d::ui::Widget* aRoot)
 {
-    auto position = aTarget->getPosition();
-
     const auto* panelLogic = dynamic_cast<cocos2d::ui::Layout*>(
         aRoot->getChildByName("panel_logic"));
     const auto* mapLogic = dynamic_cast<cocos2d::TMXTiledMap*>(
         panelLogic->getChildByName("stage1_logic"));
     auto* mapLayer = mapLogic->getLayer("Layer1");
 
-    auto gid = mapLayer->getTileGIDAt(CPlayField::WorldToTile(mapLogic, position));
+    auto gid = mapLayer->getTileGIDAt(CPlayField::WorldToTile(mapLogic, aPosition));
     if (gid != 0)
     {
         const auto properties = mapLogic->getPropertiesForGID(gid);

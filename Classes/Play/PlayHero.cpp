@@ -79,7 +79,7 @@ void CPlayHero::MoveHero(cocos2d::ui::Layout* aHero,
         break;
     }
 
-    if (CPlayField::IsHitWall(aHero, aRoot))
+    if (CPlayField::IsHitWall( (position + movePosition), aRoot))
     {
         movePosition = cocos2d::Vec2::ZERO;
     }
