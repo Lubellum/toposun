@@ -19,7 +19,7 @@ public:
     virtual bool init() override;
     virtual void update(float delta) override;
     
-    void Initilize(const std::string& aParameter);
+    void Initialize(const std::string& aParameter);
     std::function<void(Ref*)> CreatePlayEvent();
     std::function<void(Ref*)> CreateLevelSelectEvent();
 

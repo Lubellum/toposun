@@ -18,7 +18,7 @@ USING_NS_CC;
 CPlayLevelSelectScene* CPlayLevelSelectScene::create(const std::string& aParameter)
 {
     auto* instance = CPlayLevelSelectScene::create();
-    instance->Initilize(aParameter);
+    instance->Initialize(aParameter);
     return instance;
 }
 
@@ -68,7 +68,7 @@ void CPlayLevelSelectScene::update(float delta)
 // ------------------------------------------------------------------------- //
 // 初期化
 // ------------------------------------------------------------------------- //
-void CPlayLevelSelectScene::Initilize(const std::string& aParameter)
+void CPlayLevelSelectScene::Initialize(const std::string& aParameter)
 {
     mParameter = aParameter;
 

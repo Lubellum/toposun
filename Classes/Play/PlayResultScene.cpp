@@ -8,8 +8,7 @@
 #include "ui/UIHelper.h"
 #include "cocostudio/CocoStudio.h"
 
-// todo: 消す
-USING_NS_CC;
+
 
 // ========================================================================= //
 // 【プレイ】結果画面
@@ -21,14 +20,14 @@ USING_NS_CC;
 CPlayResultScene* CPlayResultScene::create(const std::string& aParameter)
 {
     auto* instance = CPlayResultScene::create();
-    instance->Initilize(aParameter);
+    instance->Initialize(aParameter);
     return instance;
 }
 
 // ------------------------------------------------------------------------- //
 // シーン生成
 // ------------------------------------------------------------------------- //
-Scene* CPlayResultScene::CreateScene(const std::string& aParameter)
+cocos2d::Scene* CPlayResultScene::CreateScene(const std::string& aParameter)
 {
     return CPlayResultScene::create(aParameter);
 }
@@ -71,7 +70,7 @@ void CPlayResultScene::update(float delta)
 // ------------------------------------------------------------------------- //
 // 初期化
 // ------------------------------------------------------------------------- //
-void CPlayResultScene::Initilize(const std::string& aParameter)
+void CPlayResultScene::Initialize(const std::string& aParameter)
 {
     mParameter = aParameter;
     auto guiReader = cocostudio::GUIReader::getInstance();
@@ -97,14 +96,14 @@ void CPlayResultScene::Initilize(const std::string& aParameter)
 // ------------------------------------------------------------------------- //
 // プレイ画面遷移イベント生成
 // ------------------------------------------------------------------------- //
-std::function<void(Ref*)> CPlayResultScene::CreatePlayEvent()
+std::function<void(cocos2d::Ref*)> CPlayResultScene::CreatePlayEvent()
 {
     return [this](cocos2d::Ref*)
         {
             cocos2d::log(mParameter.c_str());
-            auto director = Director::getInstance();
+            auto director = cocos2d::Director::getInstance();
             auto scene = CPlayScene::CreateScene("eeeeeeeee");
-            auto transition = TransitionFade::create(0.5, scene);
+            auto transition = cocos2d::TransitionFade::create(0.5, scene);
             director->replaceScene(transition);
         };
 }
@@ -112,14 +111,14 @@ std::function<void(Ref*)> CPlayResultScene::CreatePlayEvent()
 // ------------------------------------------------------------------------- //
 // プレイ難易度選択画面遷移イベント生成
 // ------------------------------------------------------------------------- //
-std::function<void(Ref*)> CPlayResultScene::CreateLevelSelectEvent()
+std::function<void(cocos2d::Ref*)> CPlayResultScene::CreateLevelSelectEvent()
 {
     return [this](cocos2d::Ref*)
         {
             cocos2d::log(mParameter.c_str());
-            auto director = Director::getInstance();
+            auto director = cocos2d::Director::getInstance();
             auto scene = CPlayLevelSelectScene::CreateScene("eeeeeeeee");
-            auto transition = TransitionFade::create(0.5, scene);
+            auto transition = cocos2d::TransitionFade::create(0.5, scene);
             director->replaceScene(transition);
         };
 }

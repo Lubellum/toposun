@@ -12,7 +12,7 @@ public:
     CPlayHero();
     virtual ~CPlayHero();
 
-    void Initilize();
+    void Initialize();
 
     void SetupHero(const cocos2d::ui::Widget* aRoot);
     void MoveHero(cocos2d::ui::Layout* aHero,

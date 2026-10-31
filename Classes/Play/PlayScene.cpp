@@ -6,8 +6,7 @@
 #include "ui/UIImageView.h"
 #include "cocostudio/CocoStudio.h"
 
-// todo: 消す
-USING_NS_CC;
+
 
 // ========================================================================= //
 // 【プレイ】画面
@@ -19,14 +18,14 @@ USING_NS_CC;
 CPlayScene* CPlayScene::create(const std::string& aParameter)
 {
     auto* instance = CPlayScene::create();
-    instance->Initilize(aParameter);
+    instance->Initialize(aParameter);
     return instance;
 }
 
 // ------------------------------------------------------------------------- //
 // シーン生成
 // ------------------------------------------------------------------------- //
-Scene* CPlayScene::CreateScene(const std::string& aParameter)
+cocos2d::Scene* CPlayScene::CreateScene(const std::string& aParameter)
 {
     return CPlayScene::create(aParameter);
 }
@@ -71,7 +70,7 @@ void CPlayScene::update(float delta)
 // ------------------------------------------------------------------------- //
 // 初期化
 // ------------------------------------------------------------------------- //
-void CPlayScene::Initilize(const std::string& aParameter)
+void CPlayScene::Initialize(const std::string& aParameter)
 {
     mParameter = aParameter;
     auto* guiReader = cocostudio::GUIReader::getInstance();
@@ -79,10 +78,10 @@ void CPlayScene::Initilize(const std::string& aParameter)
     this->addChild(root);
     SetupUI(root);
 
-    mPlayField.Initilize(aParameter, root);
+    mPlayField.Initialize(aParameter, root);
 
     mPlayHero.SetupHero(root);
-    auto* listener = EventListenerKeyboard::create();
+    auto* listener = cocos2d::EventListenerKeyboard::create();
     listener->onKeyPressed = CreateKeyPressedEvent(root);
 
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
@@ -110,9 +109,9 @@ CPlayScene::tClickEvent CPlayScene::CreateDecisionEvent()
     return [this](cocos2d::Ref*)
         {
             cocos2d::log(mParameter.c_str());
-            auto* director = Director::getInstance();
+            auto* director = cocos2d::Director::getInstance();
             auto* scene = CPlayResultScene::CreateScene("eeeeeeeee");
-            auto* transition = TransitionFade::create(0.5, scene);
+            auto* transition = cocos2d::TransitionFade::create(0.5, scene);
             director->replaceScene(transition);
         };
 }

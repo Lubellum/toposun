@@ -17,7 +17,7 @@ USING_NS_CC;
 CTitleScene* CTitleScene::create(const std::string& aParameter)
 {
     auto* instance = CTitleScene::create();
-    instance->Initilize(aParameter);
+    instance->Initialize(aParameter);
     return instance;
 }
 
@@ -67,7 +67,7 @@ void CTitleScene::update(float delta)
 // ------------------------------------------------------------------------- //
 // 初期化
 // ------------------------------------------------------------------------- //
-void CTitleScene::Initilize(const std::string& aParameter)
+void CTitleScene::Initialize(const std::string& aParameter)
 {
     auto guiReader = cocostudio::GUIReader::getInstance();
     auto root = guiReader->widgetFromJsonFile("json/title.json");

@@ -8,8 +8,7 @@
 #include "ui/UIHelper.h"
 #include "cocostudio/CocoStudio.h"
 
-// todo: 消す
-USING_NS_CC;
+
 
 // ========================================================================= //
 // 【プレイ】ポーズ画面
@@ -21,14 +20,14 @@ USING_NS_CC;
 CPlayPauseScene* CPlayPauseScene::create(const std::string& aParameter)
 {
     auto* instance = CPlayPauseScene::create();
-    instance->Initilize(aParameter);
+    instance->Initialize(aParameter);
     return instance;
 }
 
 // ------------------------------------------------------------------------- //
 // シーン生成
 // ------------------------------------------------------------------------- //
-Scene* CPlayPauseScene::CreateScene(const std::string& aParameter)
+cocos2d::Scene* CPlayPauseScene::CreateScene(const std::string& aParameter)
 {
     return CPlayPauseScene::create(aParameter);
 }
@@ -71,7 +70,7 @@ void CPlayPauseScene::update(float delta)
 // ------------------------------------------------------------------------- //
 // 初期化
 // ------------------------------------------------------------------------- //
-void CPlayPauseScene::Initilize(const std::string& aParameter)
+void CPlayPauseScene::Initialize(const std::string& aParameter)
 {
     mParameter = aParameter;
     auto guiReader = cocostudio::GUIReader::getInstance();
@@ -97,7 +96,7 @@ void CPlayPauseScene::Initilize(const std::string& aParameter)
 // ------------------------------------------------------------------------- //
 // プレイ画面遷移イベント生成
 // ------------------------------------------------------------------------- //
-std::function<void(Ref*)> CPlayPauseScene::CreatePlayEvent()
+std::function<void(cocos2d::Ref*)> CPlayPauseScene::CreatePlayEvent()
 {
     return [this](cocos2d::Ref*)
         {
@@ -109,14 +108,14 @@ std::function<void(Ref*)> CPlayPauseScene::CreatePlayEvent()
 // ------------------------------------------------------------------------- //
 // プレイ難易度選択画面遷移イベント生成
 // ------------------------------------------------------------------------- //
-std::function<void(Ref*)> CPlayPauseScene::CreateLevelSelectEvent()
+std::function<void(cocos2d::Ref*)> CPlayPauseScene::CreateLevelSelectEvent()
 {
     return [this](cocos2d::Ref*)
         {
             cocos2d::log(mParameter.c_str());
-            auto director = Director::getInstance();
+            auto director = cocos2d::Director::getInstance();
             auto scene = CPlayLevelSelectScene::CreateScene("eeeeeeeee");
-            auto transition = TransitionFade::create(0.5, scene);
+            auto transition = cocos2d::TransitionFade::create(0.5, scene);
             director->replaceScene(transition);
         };
 }

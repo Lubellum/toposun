@@ -27,7 +27,7 @@ public:
     virtual void update(float delta) override;
 
 private:
-    void Initilize(const std::string& aParameter);
+    void Initialize(const std::string& aParameter);
     void SetupUI(const cocos2d::ui::Widget* aRoot);
     tKeyboardEvent CreateKeyPressedEvent(const cocos2d::ui::Widget* aRoot);
     tClickEvent CreateDecisionEvent();
