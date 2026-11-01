@@ -6,7 +6,6 @@
 #include "ui/UILayout.h"
 #include "cocostudio/CocoStudio.h"
 
-USING_NS_CC;
 
 // ========================================================================= //
 // 【プレイ】難易度選択画面
@@ -25,7 +24,7 @@ CPlayLevelSelectScene* CPlayLevelSelectScene::create(const std::string& aParamet
 // ------------------------------------------------------------------------- //
 // シーン生成
 // ------------------------------------------------------------------------- //
-Scene* CPlayLevelSelectScene::CreateScene(const std::string& aParameter)
+cocos2d::Scene* CPlayLevelSelectScene::CreateScene(const std::string& aParameter)
 {
     return CPlayLevelSelectScene::create(aParameter);
 }
@@ -88,14 +87,14 @@ void CPlayLevelSelectScene::Initialize(const std::string& aParameter)
 // ------------------------------------------------------------------------- //
 // 決定イベント生成
 // ------------------------------------------------------------------------- //
-std::function<void(Ref*)> CPlayLevelSelectScene::CreateDecisionEvent(int aLevel)
+std::function<void(cocos2d::Ref*)> CPlayLevelSelectScene::CreateDecisionEvent(int aLevel)
 {
     return [this, aLevel](cocos2d::Ref*)
         {
             cocos2d::log(mParameter.c_str());
-            auto director = Director::getInstance();
+            auto director = cocos2d::Director::getInstance();
             auto scene = CPlaySummaryScene::CreateScene(std::to_string(aLevel));
-            auto transition = TransitionFade::create(0.5, scene);
+            auto transition = cocos2d::TransitionFade::create(0.5, scene);
             director->replaceScene(transition);
         };
 }

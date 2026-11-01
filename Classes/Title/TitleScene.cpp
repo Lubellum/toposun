@@ -5,7 +5,6 @@
 #include "ui/UIImageView.h"
 #include "cocostudio/CocoStudio.h"
 
-USING_NS_CC;
 
 // ========================================================================= //
 // 【タイトル】画面
@@ -24,7 +23,7 @@ CTitleScene* CTitleScene::create(const std::string& aParameter)
 // ------------------------------------------------------------------------- //
 // シーン生成
 // ------------------------------------------------------------------------- //
-Scene* CTitleScene::CreateScene()
+cocos2d::Scene* CTitleScene::CreateScene()
 {
     return CTitleScene::create(std::string());
 }
@@ -80,14 +79,14 @@ void CTitleScene::Initialize(const std::string& aParameter)
 // ------------------------------------------------------------------------- //
 // 決定イベント生成
 // ------------------------------------------------------------------------- //
-std::function<void(Ref*)> CTitleScene::CreateDecisionEvent()
+std::function<void(cocos2d::Ref*)> CTitleScene::CreateDecisionEvent()
 {
     return [](cocos2d::Ref*)
         {
             // cocos2d::log("aaaaaaaaaaaaa");
-            auto director = Director::getInstance();
+            auto director = cocos2d::Director::getInstance();
             auto scene = CPlayLevelSelectScene::CreateScene("cccccccccc");
-            auto transition = TransitionFade::create(0.5, scene);
+            auto transition = cocos2d::TransitionFade::create(0.5, scene);
             director->replaceScene(transition);
         };
 }
